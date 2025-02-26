@@ -20,12 +20,6 @@ public class Main {
 		double valorTotalComDesconto = produto.calcularDesconto();
         System.out.printf("Valor total : R$ %.2f\n", valorTotalComDesconto);
         sc.close();
-
-
-
-		
-		
-
 	}
 
 }
