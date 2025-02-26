@@ -2,7 +2,7 @@
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_p4B1YPK5Ee-qCbpN1ZPbuA" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_p4B1YfK5Ee-qCbpN1ZPbuA" bindingContexts="_p4CccvK5Ee-qCbpN1ZPbuA">
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;CadastroPessoas.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/CadastroPessoas.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/CadastroPessoas.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Cliente.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/Cliente.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/Cliente.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;TestaCadastro.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/TestaCadastro.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/TestaCadastro.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Data.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/Data.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/Data.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Gerente.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/Gerente.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/Gerente.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Pessoa.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/Pessoa.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/Pessoa.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;Funcionario.java&quot; tooltip=&quot;Sistema_cadastro/src/cadastro/Funcionario.java&quot;>&#xD;&#xA;&lt;persistable path=&quot;/Sistema_cadastro/src/cadastro/Funcionario.java&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_p4B1YfK5Ee-qCbpN1ZPbuA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_swM8YfK5Ee-qCbpN1ZPbuA" label="%trimmedwindow.label.eclipseSDK" x="269" y="-28" width="1024" height="768">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_p4B1YfK5Ee-qCbpN1ZPbuA" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_swM8YfK5Ee-qCbpN1ZPbuA" label="%trimmedwindow.label.eclipseSDK" x="-9" y="0" width="1024" height="768">
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -673,7 +673,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_s_CCkPK5Ee-qCbpN1ZPbuA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_fmFQgPPiEe-7Jetq7XVDvQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_p8VGxfK5Ee-qCbpN1ZPbuA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="___L9APRqEe-HYfyYlwC-dg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_p8VGxfK5Ee-qCbpN1ZPbuA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_s_CCkfK5Ee-qCbpN1ZPbuA" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -681,8 +681,8 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_s_D3wPK5Ee-qCbpN1ZPbuA" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_foKUIPPiEe-7Jetq7XVDvQ" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_p8KHn_K5Ee-qCbpN1ZPbuA"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_foS3APPiEe-7Jetq7XVDvQ" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_p8OZF_K5Ee-qCbpN1ZPbuA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="___PnYPRqEe-HYfyYlwC-dg" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_p8KHn_K5Ee-qCbpN1ZPbuA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="___QOcPRqEe-HYfyYlwC-dg" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_p8OZF_K5Ee-qCbpN1ZPbuA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_s_D3wfK5Ee-qCbpN1ZPbuA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -715,7 +715,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_s_HiIvK5Ee-qCbpN1ZPbuA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_fozNUPPiEe-7Jetq7XVDvQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_p8T4hvK5Ee-qCbpN1ZPbuA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="___Uf4PRqEe-HYfyYlwC-dg" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_p8T4hvK5Ee-qCbpN1ZPbuA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_s_IwQPK5Ee-qCbpN1ZPbuA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -3312,7 +3312,7 @@
   <addons xmi:id="_p4Gt4vK5Ee-qCbpN1ZPbuA" elementId="MinMax Addon" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.MinMaxAddon"/>
   <addons xmi:id="_p4Gt4_K5Ee-qCbpN1ZPbuA" elementId="org.eclipse.ui.workbench.addon.0" contributorURI="platform:/plugin/org.eclipse.platform" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
   <addons xmi:id="_p5DwIPK5Ee-qCbpN1ZPbuA" elementId="SplitterAddon" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.splitteraddon.SplitterAddon"/>
-  <addons xmi:id="_d3aIMPPiEe-7Jetq7XVDvQ" elementId="org.eclipse.ui.ide.addon.0" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
+  <addons xmi:id="_IYS0IKimEeS11vbz3f9ezw" elementId="org.eclipse.ui.ide.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide" contributionURI="bundleclass://org.eclipse.ui.ide/org.eclipse.ui.internal.ide.addons.SaveAllDirtyPartsAddon"/>
   <addons xmi:id="_dz0JgGOlEeSMMaPQU2nlzw" elementId="org.eclipse.ui.ide.application.addon.0" contributorURI="platform:/plugin/org.eclipse.ui.ide.application" contributionURI="bundleclass://org.eclipse.ui.ide.application/org.eclipse.ui.internal.ide.application.addons.ModelCleanupAddon"/>
   <categories xmi:id="_p7DUMPK5Ee-qCbpN1ZPbuA" elementId="org.eclipse.ui.category.edit" name="Edit"/>
   <categories xmi:id="_p7D7QPK5Ee-qCbpN1ZPbuA" elementId="org.eclipse.mylyn.wikitext.ui.editor.category" name="WikiText Markup Editing Commands" description="commands for editing lightweight markup"/>
