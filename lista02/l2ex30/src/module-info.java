@@ -4,5 +4,5 @@
 /**
  * 
  */
-module ex25 {
+module l2ex30 {
 }
