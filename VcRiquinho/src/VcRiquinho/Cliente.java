@@ -13,11 +13,16 @@ public abstract class Cliente {
 		this.nome = nome;
 		this.email = email;
 	}
-	
+	//CRUD
 	public void adicionarConta(Conta conta) {
 		 if (contas.isEmpty()) contas.add(conta); // Garante pelo menos uma conta
 	        else contas.add(conta);
 	}
+	
+	public void removerConta(Conta conta) {
+        contas.remove(conta);
+        //validarContas();
+    }
 	
 	public List<Conta> getContas() {
 		return contas;
@@ -25,16 +30,6 @@ public abstract class Cliente {
 	
 	public abstract double calcularTaxaDeServico(double rendimentoBruto);
 
-	//CRUD
-	 public void adicionarConta(Conta conta) {
-	        contas.add(conta);
-	    }
-
-	    public void removerConta(Conta conta) {
-	        contas.remove(conta);
-	        //validarContas();
-	    }
-	    
 	//gets e setters
 	public String getNome() {
 		return nome;
