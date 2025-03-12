@@ -62,7 +62,7 @@ public class Mock {
         clientes.get(1).adicionarConta(contaCDIPJ); // Empresa LAUTON
         
         // Conta Investimento Automático 
-        ContaInvestimentoAutomatico contaInvestimentoPJ = new ContaInvestimentoAutomatico(30000);
+        ContaInvestimentoAutomatico contaInvestimentoPJ = new ContaInvestimentoAutomatico(30000); //30k em investimento auto
         contaInvestimentoPJ.adicionarProduto(produtos.get(0));  
         contaInvestimentoPJ.adicionarProduto(produtos.get(1));  
         clientes.get(1).adicionarConta(contaInvestimentoPJ); 
