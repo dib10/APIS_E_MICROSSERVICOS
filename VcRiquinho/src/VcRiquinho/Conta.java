@@ -7,6 +7,11 @@ public abstract class Conta {
     public Conta(double saldoInicial) {
         this.saldo = saldoInicial;
     }
-    
-    public abstract double calcularRendimentoBruto(int dias);
+    public double getSaldo() {
+        return saldo;
+    }
+    public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	public abstract double calcularRendimentoBruto(int dias);
 }

@@ -15,49 +15,35 @@ public abstract class Cliente {
 	}
 	//CRUD
 	public void adicionarConta(Conta conta) {
-		 if (contas.isEmpty()) contas.add(conta); // Garante pelo menos uma conta
-	        else contas.add(conta);
+			contas.add(conta);
 	}
 	
 	public void removerConta(Conta conta) {
-        contas.remove(conta);
-        //validarContas();
-    }
+	    if (contas.size() > 1) {
+	        contas.remove(conta);
+	    } else {
+	        System.out.println("O cliente deve ter pelo menos uma conta.");
+	    }
+	}
+
 	
 	public List<Conta> getContas() {
 		return contas;
 	}
 	
 	public abstract double calcularTaxaDeServico(double rendimentoBruto);
-
+	
 	//gets e setters
 	public String getNome() {
 		return nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public List<Conta> getContas() {
-        return contas;
-    }
-
-
-
-	
-		
-	
-	
-	
-	
-
 }
