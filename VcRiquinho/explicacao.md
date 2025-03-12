@@ -13,8 +13,9 @@
 
 #### Clientes
 - **Classe Base**: `Cliente` (abstrata)
-  - Atributos base: nome, email, Lista de contas associadas
-  - Métodos: Método para cálculo de taxa de serviço adicionar conta
+  
+  - Utiliza de métodos para cálculo de taxa de serviço: 
+  `public abstract double calcularTaxaDeServico(double rendimentoBruto)` , adicionar conta e remover conta. ;
 - **Especializações**:
   - `PessoaFisica`: estende de cliente e possui sua própria taxa de serviço
   - `PessoaJuridica`: estende de cliente e possui sua própria taxa de serviço
