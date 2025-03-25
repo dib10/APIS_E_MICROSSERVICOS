@@ -103,4 +103,26 @@ public class ContactController {
     public void deleteContact(@PathVariable Long id) {
         contactRepository.deleteById(id);
     }
+    //EX2. ADD PATCH para atualizar o email
+    @PatchMapping("/{id}")
+    
+    public Contact patchContact(@PathVariable Long id, @RequestBody Contact patchContact) {
+    	
+    	Contact existingContact = contactRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contato não encontrado: " + id));
+    	//atualizar apenas os que não são nulos
+    	if (patchContact.getNome() != null) {
+			existingContact.setNome(patchContact.getNome());
+		}
+    	
+    	if (patchContact.getTelefone() != null) {
+            existingContact.setTelefone(patchContact.getTelefone());
+        }
+        if (patchContact.getEmail() != null) {
+            existingContact.setEmail(patchContact.getEmail());
+        }
+        return contactRepository.save(existingContact);
+
+    }
+    
 }
