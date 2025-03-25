@@ -1,0 +1,39 @@
+📌 Questões:
+
+1. Qual a principal diferença entre REST e SOAP?
+
+R: A arquitetura REST é mais simples e flexível. Ela utiliza HTTP e suporta JSON e XML. Ela é ideal para sistemas mais modernos e escaláveis.
+
+A arquitetura SOAP ela é mais "complexa", usa XML e é rigorosa. Utilizada normalmente em sistemas corporativos que exigem segurança e confiabilidade.
+
+
+2. Em quais cenários SOAP ainda é utilizado?
+
+R: Como dito na questão anterior, a arquitetura SOAP é normalmente utilizada em sistemas empresariais complexos e governamentais que exigem uma alta segurança. Também utilizada em integrações legadas.
+
+3. Quais são as vantagens e desvantagens de usar REST ao invés de SOAP?
+
+As vantagens de utilizar a arquitetura REST é sua simplicidade, flexibilidade, melhor desempenho e mais "fácil" de implementar.
+
+As desvantagens são que possui menos recursos nativos de seguranças e transações, que o SOAP oferece. 
+
+4. O que é WS-Security e como ele se compara à segurança em APIs REST?
+
+R: Ws-Security é um padrão de segurança da arquitetura SOAP, que oferece autenticação e criptografia robustas. Por exemplo, o REST usa HTTPS e autenticação OAuth / JWT, mas não tem a mesma segurança nativa do SOAP
+
+5. Explique o modelo de maturidade de Richardson.
+R:
+
+Nível 0: simples, sem diferenciação de métodos HTTP.
+
+Nível 1: URLs separadas para diferentes recursos.
+
+Nível 2: Melhor uso de verbos HTTP (GET, POST, outros).
+
+Nível 3: HATEOAS — links adicionais na resposta para o próximo passo da interação.
+
+6. O que é GraphQL? Pesquisa e relacione com os conceitos vistos em aula.
+
+R: É uma linguagem flexível de consultas para apis onde o cliente escolhe exatamente os dados que deseja, sem receber informações adicionais. Isso melhora a eficiência em relação ao REST.
+
+
