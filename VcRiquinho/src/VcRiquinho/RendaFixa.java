@@ -12,7 +12,7 @@ public class RendaFixa extends ProdutoInvestimento{
 	
 	
 	@Override
-	public double calcularRendimento(int dias, double saldoAlocado) {//saldo alocado é novo
+	public double calcularRendimento(int dias, double saldoAlocado) {
 	    if (dias < periodoDeCarencia) return 0;
 	    return saldoAlocado * rendimentoMensalFixo * (dias / 30.0);
 	}
