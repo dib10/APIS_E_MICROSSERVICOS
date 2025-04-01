@@ -20,6 +20,10 @@ public class Address {
     private Contact contact;
 
 	//construtor
+	
+	// Construtor padrão 
+    public Address() {
+    }
 
 	public Address(String rua, String cidade, String estado, String cep, Contact contact) {
 		super();
