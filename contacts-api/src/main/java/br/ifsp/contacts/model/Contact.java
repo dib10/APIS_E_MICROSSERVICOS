@@ -1,10 +1,13 @@
 package br.ifsp.contacts.model;
 
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Email;
+//validações
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 /**
  * Classe que representa o modelo de dados para um Contato.
@@ -25,7 +28,11 @@ public class Contact {
     private Long id;
     @NotBlank(message = "O campo nome não pode estar vazio.")
     private String nome;
+    
+    @Size(min = 8, max = 15, message = "O telefone deve ter entre 8 e 15 caracteres")
     private String telefone;
+    
+    @Email(message = "O email deve ter um formato válido.")
     private String email;
 
     // Construtor vazio exigido pelo JPA

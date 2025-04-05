@@ -1,11 +1,15 @@
 package br.ifsp.contacts.controller;
 
 import br.ifsp.contacts.model.Contact;
+
 import br.ifsp.contacts.repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+//importação para @Valid
+import jakarta.validation.Valid;
 
 /**
  * Classe responsável por mapear as rotas/endpoints relacionados
@@ -62,13 +66,13 @@ public class ContactController {
 
     /**
      * Método para criar um novo contato.
-     * 
+     * @Valid
      * @PostMapping indica que este método responde a chamadas HTTP POST.
      * @RequestBody indica que o objeto Contact será preenchido 
      * com os dados JSON enviados no corpo da requisição.
      */
     @PostMapping
-    public Contact createContact(@RequestBody Contact contact) {
+    public Contact createContact(@Valid @RequestBody Contact contact) {
         return contactRepository.save(contact);
     }
 
@@ -79,7 +83,7 @@ public class ContactController {
      * Exemplo de acesso: PUT /api/contacts/1
      */
     @PutMapping("/{id}")
-    public Contact updateContact(@PathVariable Long id, @RequestBody Contact updatedContact) {
+    public Contact updateContact(@PathVariable Long id, @Valid @RequestBody Contact updatedContact) {
         // Buscar o contato existente
         Contact existingContact = contactRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Contato não encontrado: " + id));
@@ -106,7 +110,7 @@ public class ContactController {
     //EX2. ADD PATCH para atualizar o email
     @PatchMapping("/{id}")
     
-    public Contact patchContact(@PathVariable Long id, @RequestBody Contact patchContact) {
+    public Contact patchContact(@PathVariable Long id, @ Valid @RequestBody Contact patchContact) {
     	
     	Contact existingContact = contactRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Contato não encontrado: " + id));
