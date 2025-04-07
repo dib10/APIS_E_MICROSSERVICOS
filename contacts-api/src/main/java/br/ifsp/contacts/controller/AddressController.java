@@ -1,11 +1,11 @@
 package br.ifsp.contacts.controller;
 
-// Imports necessários (Page, Pageable adicionados, List/Collectors removidos se não usados em outros métodos)
+// Imports Spring e Java
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import br.ifsp.contacts.dto.AddressInputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType; // Import necessário para @Content
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,16 +13,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+
 import br.ifsp.contacts.dto.AddressDTO;
+import br.ifsp.contacts.dto.AddressInputDTO;
 import br.ifsp.contacts.exception.ResourceNotFoundException;
 import br.ifsp.contacts.model.Address;
 import br.ifsp.contacts.model.Contact;
 import br.ifsp.contacts.repository.AddressRepository;
 import br.ifsp.contacts.repository.ContactRepository;
-import jakarta.validation.Valid;
+
+// Imports do Swagger/OpenAPI
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 @RestController
 @RequestMapping("/api/contacts")
+// Adicionando a mesma Tag para manter agrupado com as operações de Contato, já que a URL base é a mesma
+@Tag(name = "Contatos", description = "Endpoints para Gerenciamento de Contatos e seus Endereços")
 public class AddressController {
 
     //o autowired permite que o spring injete de forma automatica uma instancia do AddressRepository, e também permite injetar no ContactRepository
@@ -65,7 +79,22 @@ public class AddressController {
 
     @PostMapping("/{id}/addresses")
     @ResponseStatus(HttpStatus.CREATED)
-    public AddressDTO createAddress(@PathVariable Long id, @Valid @RequestBody AddressInputDTO addressInputDto) {
+    @Operation(summary = "Cria um novo endereço para um contato", description = "Cadastra um novo endereço associado a um contato existente especificado pelo ID.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Endereço criado com sucesso",
+                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                        schema = @Schema(implementation = AddressDTO.class))),
+        @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos para o endereço", content = @Content),
+        @ApiResponse(responseCode = "404", description = "Contato não encontrado com o ID fornecido", content = @Content)
+    })
+    public AddressDTO createAddress(
+            @Parameter(description = "ID do contato ao qual o endereço será associado", required = true, example = "1")
+            @PathVariable Long id,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                 description = "Objeto do endereço a ser criado.", required = true,
+                 content = @Content(schema = @Schema(implementation = AddressInputDTO.class)) // Usa o DTO de entrada aqui
+            )
+            @Valid @RequestBody AddressInputDTO addressInputDto) {
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("O contato não foi encontrado: "  +id));
 
@@ -76,21 +105,24 @@ public class AddressController {
         return toAddressDTO(savedAddress);
     }
 
-    /**
-     * adicionando método que todos os endereços do contato de forma paginada
-     * Exemplo: GET /api/contacts/1/addresses?page=0&size=5&sort=cidade
-     */
+   
     @GetMapping("/{id}/addresses")
-    // Assinatura corrigida: recebe Pageable, retorna Page<AddressDTO>
-    public Page<AddressDTO> getAddressesForContact(@PathVariable Long id, Pageable pageable) {
-        // 1. Busca o contato (ou lança exceção)
+    @Operation(summary = "Lista os endereços de um contato", description = "Retorna uma lista paginada e ordenada dos endereços associados a um contato específico.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Lista de endereços recuperada com sucesso",
+                     content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                        schema = @Schema(implementation = Page.class))), // Indica que a resposta é uma Page
+        @ApiResponse(responseCode = "404", description = "Contato não encontrado com o ID fornecido", content = @Content)
+    })
+    public Page<AddressDTO> getAddressesForContact(
+            @Parameter(description = "ID do contato cujos endereços devem ser listados", required = true, example = "1")
+            @PathVariable Long id,
+            Pageable pageable) { // Pageable tratado automaticamente pelo springdoc
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado: " + id));
 
-        // 2. Chama o método do repositório com Pageable, retorna Page<Address>
         Page<Address> addressesPage = addressRepository.findByContact(contact, pageable);
 
-        // 3. Mapeia Page<Address> para Page<AddressDTO> usando map() e retorna
         return addressesPage.map(this::toAddressDTO);
     }
 }
