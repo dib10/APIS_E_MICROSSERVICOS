@@ -81,9 +81,9 @@ public class AddressController {
 
     // adicionando método que todos os endereços do contato
     @GetMapping("/{id}/addresses")
-    public List<AddressDTO> getAddressesForContact(@PathVariable Long contactId) {
-        Contact contact = contactRepository.findById(contactId)
-                .orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado: " + contactId));
+    public List<AddressDTO> getAddressesForContact(@PathVariable Long id) {
+        Contact contact = contactRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado: " + id));
 
         List<Address> addresses = addressRepository.findByContact(contact);
 
