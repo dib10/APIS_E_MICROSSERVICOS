@@ -1,13 +1,10 @@
 package br.ifsp.contacts.controller;
 
-import br.ifsp.contacts.model.Address; // Import necessário
-import br.ifsp.contacts.repository.AddressRepository; // Import necessário
-import jakarta.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import java.util.List; // Necessário para o deleteContact
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.transaction.annotation.Transactional; // Import necessário
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,10 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.ifsp.contacts.dto.ContactDTO; // importando o DTO
 import br.ifsp.contacts.exception.ResourceNotFoundException;
+import br.ifsp.contacts.model.Address;
 import br.ifsp.contacts.model.Contact;
+import br.ifsp.contacts.repository.AddressRepository;
 import br.ifsp.contacts.repository.ContactRepository;
+import org.springframework.transaction.annotation.Transactional; // Import corrigido para @Transactional
+import jakarta.validation.Valid;
 //importação para @Valid
 
 /**
@@ -76,23 +78,22 @@ public class ContactController {
      * Método para obter todos os contatos.
      *
      * @GetMapping indica que este método vai responder a chamadas HTTP GET.
-     * Exemplo de acesso: GET /api/contacts
+     * Exemplo de acesso: GET /api/contacts?page=0&size=10&sort=nome,asc
      */
     @GetMapping
-    public List<ContactDTO> getAllContacts() {
-        return contactRepository.findAll()
-                .stream() // Converte a lista para um stream
-                .map(this::toContactDTO) // Mapeia cada Contact para ContactDTO usando nosso método
-                .collect(Collectors.toList()); // Coleta os resultados em uma nova lista
+    public Page<ContactDTO> getAllContacts(Pageable pageable) {
+        Page<Contact> contactPage = contactRepository.findAll(pageable);
+        return contactPage.map(this::toContactDTO);
     }
 
+     /**
+     * EX 1 Método para buscar contatos por nome de forma paginada e ordenada.
+     * Exemplo: GET /api/contacts/search?name=Silva&page=0&size=10&sort=email,desc
+     */
     @GetMapping("/search")
-    // EX 1 Método para buscar contatos por nome
-    public List<ContactDTO> searchContactsByName(@RequestParam String name) {
-        return contactRepository.findByNomeContainingIgnoreCase(name)
-                .stream()
-                .map(this::toContactDTO)
-                .collect(Collectors.toList());
+    public Page<ContactDTO> searchContactsByName(@RequestParam String name, Pageable pageable) {
+        Page<Contact> contactPage = contactRepository.findByNomeContainingIgnoreCase(name, pageable);
+        return contactPage.map(this::toContactDTO);
     }
 
     /**
@@ -164,8 +165,8 @@ public class ContactController {
         Contact contact = contactRepository.findById(id)
              .orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado com ID: " + id));
 
-        // 2. Buscar os endereços associados a este contato
-        List<Address> addressesToDelete = addressRepository.findByContact(contact);
+        // 2. Buscar os endereços associados a este contato (usando Pageable.unpaged())
+        List<Address> addressesToDelete = addressRepository.findByContact(contact, Pageable.unpaged()).getContent(); // <-- Linha corrigida
 
         // 3. Deletar os endereços associados PRIMEIRO (se existirem)
         if (!addressesToDelete.isEmpty()) {
@@ -178,7 +179,7 @@ public class ContactController {
 
     //EX2. ADD PATCH para atualizar o email
     @PatchMapping("/{id}")
-    public ContactDTO patchContact(@PathVariable Long id, @ Valid @RequestBody ContactDTO patchContactDTO) {
+    public ContactDTO patchContact(@PathVariable Long id, @Valid @RequestBody ContactDTO patchContactDTO) {
 
         Contact existingContact = contactRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado: " + id));
@@ -198,5 +199,4 @@ public class ContactController {
 
         return toContactDTO(savedContact);
     }
-
 }
