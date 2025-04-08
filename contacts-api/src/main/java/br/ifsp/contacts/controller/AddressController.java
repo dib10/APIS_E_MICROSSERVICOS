@@ -35,7 +35,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/api/contacts")
-// Adicionando a mesma Tag para manter agrupado com as operações de Contato, já que a URL base é a mesma
+
 @Tag(name = "Contatos", description = "Endpoints para Gerenciamento de Contatos e seus Endereços")
 public class AddressController {
 
@@ -111,13 +111,14 @@ public class AddressController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Lista de endereços recuperada com sucesso",
                      content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                        schema = @Schema(implementation = Page.class))), // Indica que a resposta é uma Page
+                                        schema = @Schema(implementation = Page.class))), 
+        
         @ApiResponse(responseCode = "404", description = "Contato não encontrado com o ID fornecido", content = @Content)
     })
     public Page<AddressDTO> getAddressesForContact(
             @Parameter(description = "ID do contato cujos endereços devem ser listados", required = true, example = "1")
             @PathVariable Long id,
-            Pageable pageable) { // Pageable tratado automaticamente pelo springdoc
+            Pageable pageable) { 
         Contact contact = contactRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Contato não encontrado: " + id));
 
