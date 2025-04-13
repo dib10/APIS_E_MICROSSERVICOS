@@ -1,6 +1,9 @@
 package dev.caio.tasks_api.model;
 
+import dev.caio.tasks_api.enums.Prioridade;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,6 +16,8 @@ public class Task {
 	private Long id;
 	private String titulo;
 	private String descricao;
+	@Enumerated(EnumType.STRING)
+	private Prioridade prioridade;
 	
 	
 	//construtor padrão
@@ -48,6 +53,18 @@ public class Task {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+
+	public Prioridade getPrioridade() {
+		return prioridade;
+	}
+
+
+	public void setPrioridade(Prioridade prioridade) {
+		this.prioridade = prioridade;
+	}
+	
+	
 	
 	
 	
