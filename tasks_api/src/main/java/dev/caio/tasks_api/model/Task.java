@@ -18,10 +18,12 @@ public class Task {
 	private Long id;
 	private String titulo;
 	private String descricao;
+	
 	@Enumerated(EnumType.STRING)
 	private Prioridade prioridade;
 	
 	private LocalDate dataLimite;
+	private Boolean concluida = false; // Inicializarei como false pois uma tarefa começa como "não concluída".
 	
 	
 	//construtor padrão
@@ -77,6 +79,18 @@ public class Task {
 	public void setDataLimite(LocalDate dataLimite) {
 		this.dataLimite = dataLimite;
 	}
+
+
+	public Boolean isConcluida() {
+		return concluida;
+	}
+
+
+	public void setConcluida(Boolean concluida) {
+		this.concluida = concluida;
+	}
+	
+	
 	
 	
 	
