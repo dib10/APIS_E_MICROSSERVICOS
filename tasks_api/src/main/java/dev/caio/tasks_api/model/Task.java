@@ -1,5 +1,7 @@
 package dev.caio.tasks_api.model;
 
+import java.time.LocalDate;
+
 import dev.caio.tasks_api.enums.Prioridade;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -18,6 +20,8 @@ public class Task {
 	private String descricao;
 	@Enumerated(EnumType.STRING)
 	private Prioridade prioridade;
+	
+	private LocalDate dataLimite;
 	
 	
 	//construtor padrão
@@ -62,6 +66,16 @@ public class Task {
 
 	public void setPrioridade(Prioridade prioridade) {
 		this.prioridade = prioridade;
+	}
+
+
+	public LocalDate getDataLimite() {
+		return dataLimite;
+	}
+
+
+	public void setDataLimite(LocalDate dataLimite) {
+		this.dataLimite = dataLimite;
 	}
 	
 	
