@@ -25,6 +25,8 @@ public class Task {
 	private LocalDate dataLimite;
 	private Boolean concluida = false; // Inicializarei como false pois uma tarefa começa como "não concluída".
 	
+	private String categoria;
+	
 	
 	//construtor padrão
 	public Task() {
@@ -89,15 +91,15 @@ public class Task {
 	public void setConcluida(Boolean concluida) {
 		this.concluida = concluida;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 
 }
