@@ -1,6 +1,7 @@
 package dev.caio.tasks_api.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import dev.caio.tasks_api.enums.Prioridade;
 import jakarta.persistence.Entity;
@@ -26,6 +27,8 @@ public class Task {
 	private Boolean concluida = false; // Inicializarei como false pois uma tarefa começa como "não concluída".
 	
 	private String categoria;
+	
+	private LocalDateTime criadaEm;
 	
 	
 	//construtor padrão
@@ -100,6 +103,16 @@ public class Task {
 
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
+	}
+
+
+	public LocalDateTime getCriadaEm() {
+		return criadaEm;
+	}
+
+
+	public void setCriadaEm(LocalDateTime criadaEm) {
+		this.criadaEm = criadaEm;
 	}
 
 }
