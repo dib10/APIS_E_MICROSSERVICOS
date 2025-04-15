@@ -1,6 +1,7 @@
 package dev.caio.tasks_api.service;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import dev.caio.tasks_api.dto.CreateTaskDTO;
 import dev.caio.tasks_api.model.Task;
 import dev.caio.tasks_api.repository.TaskRepository;
+import dev.caio.tasks_api.exception.ResourceNotFoundException; // 
+
 
 @Service
 public class TaskService {
@@ -34,5 +37,18 @@ public class TaskService {
 
 	}
 	
+	//Buscar tarefa por ID
+	
+	public Task findTaskById(Long id) { // Vou usar o nome findTaskById para consistência
+	    System.out.println("SERVICE: Tentando encontrar tarefa com ID: " + id);
+	    //Optional. Garantimos que a task exista, se não lança a exceção personalizada
+	    Optional<Task> taskOptional = taskRepository.findById(id);
 
+	    Task task = taskOptional.orElseThrow(() ->
+	        new ResourceNotFoundException("Tarefa não encontrada com ID: " + id)
+	    ); 
+
+	    System.out.println("SERVICE: Tarefa encontrada: ID " + task.getId());
+	    return task; 
+	}
 }
