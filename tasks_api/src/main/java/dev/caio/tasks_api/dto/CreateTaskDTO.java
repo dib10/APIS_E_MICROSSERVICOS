@@ -3,13 +3,22 @@ package dev.caio.tasks_api.dto;
 import java.time.LocalDate;
 
 import dev.caio.tasks_api.enums.Prioridade;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public class CreateTaskDTO {
 	
+	@NotBlank(message = "O título da tarefa não pode ser vazio.")
 	private String titulo;
+	
 	private String descricao;
+	@NotNull(message = "O campo prioridade não pode estar nulo.")
 	private Prioridade prioridade;
+	
+	@NotNull(message = "O campo data limite não pode ser nulo.")
 	private LocalDate dataLimite;
+	
+	@NotNull(message = "O campo categoria não pode ser nulo.")
 	private String categoria;
 	
 	
