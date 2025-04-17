@@ -1,5 +1,4 @@
 package dev.caio.tasks_api.service;
-
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -8,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.caio.tasks_api.dto.CreateTaskDTO;
+import dev.caio.tasks_api.exception.InvalidTaskStateException;
+import dev.caio.tasks_api.exception.ResourceNotFoundException; // 
 import dev.caio.tasks_api.model.Task;
 import dev.caio.tasks_api.repository.TaskRepository;
-import dev.caio.tasks_api.exception.ResourceNotFoundException; // 
 
 
 @Service
@@ -51,4 +51,22 @@ public class TaskService {
 	    System.out.println("SERVICE: Tarefa encontrada: ID " + task.getId());
 	    return task; 
 	}
+	// DELETAR tarefa
+	public void deleteTask(Long id) {
+		System.out.println("Solicitação recebida para deletar a tarefa de ID: " + id);
+		Task task = findTaskById(id);
+		
+		if (Boolean.TRUE.equals(task.isConcluida())) {
+	        System.err.println("ERRO - Tentativa de excluir tarefa concluída - ID: " + id + ")");
+	        
+	        throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já foi concluída.");
+		}
+	        
+	        //Se a tarefa existir -> deletar
+	        taskRepository.deleteById(id);
+	        System.out.println("Tarefa de ID: " + id + " deletada com sucesso!");
+		
+		
+	}
 }
+
