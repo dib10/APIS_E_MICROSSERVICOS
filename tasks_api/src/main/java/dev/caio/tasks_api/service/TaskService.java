@@ -37,7 +37,7 @@ public class TaskService {
 
 	}
 	
-	//Buscar tarefa por ID
+	//*******Buscar tarefa por ID
 	
 	public Task findTaskById(Long id) { // Vou usar o nome findTaskById para consistência
 	    System.out.println("SERVICE: Tentando encontrar tarefa com ID: " + id);
@@ -51,7 +51,7 @@ public class TaskService {
 	    System.out.println("SERVICE: Tarefa encontrada: ID " + task.getId());
 	    return task; 
 	}
-	// DELETAR tarefa
+	// ******* DELETAR tarefa
 	public void deleteTask(Long id) {
 		System.out.println("Solicitação recebida para deletar a tarefa de ID: " + id);
 		Task task = findTaskById(id);
@@ -70,7 +70,7 @@ public class TaskService {
 	}
 	
 	
-	// PATCH tarefa concluída
+	// ****** PATCH tarefa concluída
 	
 	public Task markTaskAsCompleted(Long id) {
 		System.out.println("Solicitação recebida para marcar a tarefa de ID: " + id);
@@ -100,5 +100,45 @@ public class TaskService {
 		
 		
 	}
+	
+	// **** Atualizar COMPLETAMENTE uma tarefa existente (PUT).
+	
+	//Create taskDTO reutilizado, pois os campos são os mesmo
+	public Task updateTask(Long id, CreateTaskDTO taskData) {
+		
+		System.out.println("Solicitação recebida para ATUALIZAR tarefa de ID: " + id);
+		
+		//1. Buscando se a tarefa existe.
+		
+		Task existingTask = findTaskById(id);
+		
+		//2. Verificando se a tarefa está concluída para lançar a exceção
+		
+		if (Boolean.TRUE.equals(existingTask.isConcluida())) {
+		System.out.println("ERRO - Tentativa de atualizar tarefa concluída");
+		throw new InvalidTaskStateException("Não é possível atualizar uma tarefa que está concluída.");
+			
+}
+		
+		//3. Validando a nova data limite antes de atualizar
+		
+		if (taskData.getDataLimite() != null && taskData.getDataLimite().isBefore(LocalDate.now())) {
+			System.out.println("ERRO: Nova data limite é inferior a hoje para a tarefa de ID: " + id);
+	         throw new IllegalArgumentException("Data limite não pode ser anterior à data atual.");
+
+		}
+        // 4. Atualizando os campos da tarefa
+		existingTask.setTitulo(taskData.getTitulo());
+		existingTask.setDescricao(taskData.getDescricao());
+		existingTask.setPrioridade(taskData.getPrioridade());
+		existingTask.setDataLimite(taskData.getDataLimite());
+		existingTask.setCategoria(taskData.getCategoria());
+		
+		System.out.println("Dados da Tarefa de ID: " + id + "preparados para atualização.");
+	    Task savedTask = taskRepository.save(existingTask);
+	    System.out.println("Tarefa de ID: " + id + " atualizada no banco.");
+	    return savedTask;
+	}
+
 }
 

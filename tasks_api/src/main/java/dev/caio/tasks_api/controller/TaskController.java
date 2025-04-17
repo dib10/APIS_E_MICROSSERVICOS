@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -56,7 +57,7 @@ public class TaskController {
 	
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteTaskapi(@PathVariable Long id)
+	public void deleteTaskApi(@PathVariable Long id)
 	{
 		System.out.println("Requisição DELETE recebida para api/tasks/" + id);
 		taskService.deleteTask(id);
@@ -75,6 +76,20 @@ public class TaskController {
 		return updatedTask;
 		
 	}
+	
+	//Endpoint -> ATUALIZAR tarefa (PUT)
+	
+	@PutMapping("/{id}")
+	public Task updateTaskApi (@PathVariable Long id, @Valid @RequestBody CreateTaskDTO taskData) {
+		
+		Task updateTask = taskService.updateTask(id, taskData);
+		
+		System.out.println("Retornando tarefa de ID: " +  id + " após atualização.");
+		
+		return updateTask;
+		
+	}
+
 
 
 
