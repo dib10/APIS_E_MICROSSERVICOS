@@ -24,7 +24,7 @@ public class TaskService {
 	public Task createTask(CreateTaskDTO createTaskDTO) {
 		if (createTaskDTO.getDataLimite() != null && createTaskDTO.getDataLimite().isBefore(LocalDate.now())) {
 			System.out.println("ERRO!! A data limite não pode ser anterior à data atual");
-			return null;
+            throw new IllegalArgumentException("Data limite não pode ser anterior à data atual.");
 			
 		}
 		

@@ -57,6 +57,18 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
 		
 	}
+	
+	// Handler para validação de data da tarefa
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<Map<String, String>> handleIllegalArgumentException(IllegalArgumentException ex) {
+	    Map<String, String> errorDetails = new HashMap<>();
+	    errorDetails.put("error", ex.getMessage());
+	    
+	    System.out.println("Tratando IllegalArgumentException (400): " + ex.getMessage());
+	    return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+
+	}
 
 	
 	
