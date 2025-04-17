@@ -68,5 +68,37 @@ public class TaskService {
 		
 		
 	}
+	
+	
+	// PATCH tarefa concluída
+	
+	public Task markTaskAsCompleted(Long id) {
+		System.out.println("Solicitação recebida para marcar a tarefa de ID: " + id);
+		// 1. Busca tarefa pelo ID
+		Task task = findTaskById(id);
+		
+		//2. verificando se a tarefa já está concluída
+		
+		if (Boolean.TRUE.equals(task.isConcluida())) {
+			System.out.println("A tarefa de ID: " + id + "já se encontra concluída.");
+			throw new InvalidTaskStateException("A taerefa (ID: " + id +") já está marcada como concluída.");
+			
+		}
+		
+		//3. Se não estiver, alterar estado para True
+		
+		task.setConcluida(true);
+		System.out.println("Alterando o estado da tarefa de ID: " + id + "para concluída.");
+		
+		//4. Salva a task atualizada no banco
+		
+		Task updatedTask = taskRepository.save(task);
+		
+		System.out.println("Tarefa ID: " + id + "atualizada e salva no banco de ");
+		
+		return updatedTask;
+		
+		
+	}
 }
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,6 +62,20 @@ public class TaskController {
 		taskService.deleteTask(id);
 		System.out.println("Tarefa ID: " + id + "processada para deleção" );
 	}
+	
+	//Endpoint -> Alterar estado da tarefa (PATCH)
+	
+	@PatchMapping("/{id}/complete")
+	public Task markTaskAsCompletedApi(@PathVariable Long id) {
+		System.out.println("Requisição PATCH recebida para concluir a tarefa de ID: " + id);
+		
+		Task updatedTask = taskService.markTaskAsCompleted(id);
+		
+		System.out.println("Retornando tarefa de ID: " + id + " após marcar como concluída");
+		return updatedTask;
+		
+	}
+
 
 
 
