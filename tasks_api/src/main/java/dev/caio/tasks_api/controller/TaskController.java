@@ -2,6 +2,7 @@ package dev.caio.tasks_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +50,18 @@ public class TaskController {
 		System.out.println("Retornando dados da tarefa de ID: " + id);
 		return task;
 	}
+	
+	//Endpoint -> DELETAR Tarefa (DELETE)
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteTaskapi(@PathVariable Long id)
+	{
+		System.out.println("Requisição DELETE recebida para api/tasks/" + id);
+		taskService.deleteTask(id);
+		System.out.println("Tarefa ID: " + id + "processada para deleção" );
+	}
+
 
 
 }
