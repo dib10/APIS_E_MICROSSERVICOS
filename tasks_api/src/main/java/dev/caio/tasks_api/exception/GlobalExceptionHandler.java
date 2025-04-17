@@ -1,5 +1,6 @@
 package dev.caio.tasks_api.exception;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,5 +44,21 @@ public class GlobalExceptionHandler {
 			return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	// (409) - Conflito de estado
+	
+	@ExceptionHandler(InvalidTaskStateException.class)
+	public ResponseEntity<Map<String, String>> handleInvalidTaskStateException(InvalidTaskStateException ex){
+		
+		// CRIANDO o corpo da resposta 
+		Map<String, String> errorDetails = new HashMap<>();
+		errorDetails.put("message", ex.getMessage());
+		
+		return new ResponseEntity<>(errorDetails, HttpStatus.CONFLICT);
+		
+	}
+
+	
+	
 
 }
