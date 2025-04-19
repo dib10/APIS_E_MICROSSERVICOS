@@ -109,7 +109,7 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	return convertToDto(savedTask);
 	}
 	
-	//Paginação - buscar todas as tarefas de forma paginada
+	// ****** Paginação - buscar todas as tarefas de forma paginada (GET)
 	
 	public Page<TaskResponseDTO> findAllPaginated(Pageable pageable) {
 		System.out.println("Buscando tarefas com paginação: " + pageable);
@@ -120,4 +120,21 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 		    return taskDtoPage;
 
 	}
+	
+	// ****** Paginação - buscar as tarefas de forma paginada por categorias (GET)
+	
+	public Page<TaskResponseDTO> findByCategoriaPaginated(String categoria, Pageable pageable) {
+		
+	    System.out.println("Buscando tarefas paginadas pela categoria");
+	    //1. Chama método criado no TaskRepository
+	    Page<Task> taskPage = taskRepository.findByCategoriaIgnoreCase(categoria, pageable);
+	    //2. Mapeia e Converte a Page<Task> pra Page<TaskResponseDTO>
+	    Page<TaskResponseDTO> taskDtoPage = taskPage.map(this::convertToDto);
+	    
+	    System.out.println("Retornando página para categoria buscada");
+	    
+	    return taskDtoPage;
+	
+	}
+
 } 

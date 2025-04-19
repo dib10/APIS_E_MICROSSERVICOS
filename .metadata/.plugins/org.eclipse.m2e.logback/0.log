@@ -2242,3 +2242,13 @@ org.eclipse.core.runtime.CoreException: Launch configuration ContactsApiApplicat
 2025-04-19 14:35:53,986 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
 2025-04-19 14:37:48,880 [Worker-21: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-04-19 14:37:48,894 [Worker-21: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-19 14:53:00,726 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-19 14:53:00,746 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-19 14:59:31,040 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-19 14:59:31,066 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-19 15:04:04,636 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-19 15:04:04,692 [Worker-24: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-19 15:07:29,892 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-19 15:07:29,902 [Worker-27: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-19 15:09:39,265 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-19 15:09:39,279 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
