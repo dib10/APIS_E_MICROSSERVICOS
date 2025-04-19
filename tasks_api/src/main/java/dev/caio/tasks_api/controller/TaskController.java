@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.caio.tasks_api.dto.CreateTaskDTO;
 import dev.caio.tasks_api.dto.TaskResponseDTO;
-import dev.caio.tasks_api.model.Task;
 import dev.caio.tasks_api.service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RestController // para controladores REST
 @RequestMapping("/api/tasks")
@@ -79,4 +80,16 @@ TaskResponseDTO createdTaskDto = taskService.createTask(createTaskDTO);
 			System.out.println("Retornando tarefa DTO de ID: " +  id + " após atualização.");
 			return updatedTaskDto;
 		}
+		//Endpoint -> LISTAR  tarefas com paginação (GET)
+		
+		@GetMapping
+		public Page<TaskResponseDTO> findAllPaginatedApi(Pageable pageable) {
+			
+		    System.out.println("Requisição GET  recebida para /api/tasks com Pageable: " + pageable);
+		    Page<TaskResponseDTO> resultPage = taskService.findAllPaginated(pageable);
+		    System.out.println("Retornando Page de TaskResponseDTO.");
+		    return resultPage;
+
+		}
+	
 }

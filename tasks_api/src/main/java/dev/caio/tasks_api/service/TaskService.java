@@ -3,10 +3,12 @@ import java.time.LocalDate;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import dev.caio.tasks_api.dto.CreateTaskDTO;
-import dev.caio.tasks_api.dto.TaskResponseDTO; 
+import dev.caio.tasks_api.dto.TaskResponseDTO;
 import dev.caio.tasks_api.exception.InvalidTaskStateException;
 import dev.caio.tasks_api.exception.ResourceNotFoundException;
 import dev.caio.tasks_api.model.Task;
@@ -106,5 +108,16 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	System.out.println("Tarefa de ID: " + id + " atualizada no banco.");
 	return convertToDto(savedTask);
 	}
+	
+	//Paginação - buscar todas as tarefas de forma paginada
+	
+	public Page<TaskResponseDTO> findAllPaginated(Pageable pageable) {
+		System.out.println("Buscando tarefas com paginação: " + pageable);
+		
+		Page<Task> taskPage = taskRepository.findAll(pageable);
+		Page<TaskResponseDTO>taskDtoPage = taskPage.map(this::convertToDto);
+		 System.out.println("Retornando página ");
+		    return taskDtoPage;
 
+	}
 } 
