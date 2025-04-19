@@ -4,12 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import dev.caio.tasks_api.enums.Prioridade;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class Task {
@@ -28,8 +30,16 @@ public class Task {
 	
 	private String categoria;
 	
+	@Column(updatable = false) // pra impedir que atualizem depois
 	private LocalDateTime criadaEm;
 	
+	//Define a data e hora de criação antes do primeiro INSERT
+	@PrePersist
+	protected void onCreate() {
+	
+		this.criadaEm = LocalDateTime.now();
+		
+	}
 	
 	//construtor padrão
 	public Task() {
@@ -110,9 +120,9 @@ public class Task {
 		return criadaEm;
 	}
 
-
-	public void setCriadaEm(LocalDateTime criadaEm) {
-		this.criadaEm = criadaEm;
-	}
+	//vou remover o set pq já tenho método onCreate
+	//public void setCriadaEm(LocalDateTime criadaEm) {
+		//this.criadaEm = criadaEm;
+	//}
 
 }
