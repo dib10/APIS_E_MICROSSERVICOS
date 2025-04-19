@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.caio.tasks_api.dto.CreateTaskDTO;
+import dev.caio.tasks_api.dto.TaskResponseDTO;
 import dev.caio.tasks_api.model.Task;
 import dev.caio.tasks_api.service.TaskService;
 import jakarta.validation.Valid;
@@ -28,67 +29,54 @@ public class TaskController {
 	//Endpoint -> CRIAR Tarefa (POST)
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Task createTaskApi(@Valid @RequestBody CreateTaskDTO createTaskDTO) {
+	public TaskResponseDTO createTaskApi(@Valid @RequestBody CreateTaskDTO createTaskDTO) {
 		System.out.println("Requisição POST recebida");
+
+TaskResponseDTO createdTaskDto = taskService.createTask(createTaskDTO);
 		
-		Task createdTask = taskService.createTask(createTaskDTO);
+        System.out.println("Retornando DTO da tarefa criada ID: " + createdTaskDto.getId());
 		
-		//Tratamento temporário
-		if (createdTask == null) {
-			System.out.println("Erro ao criar tarefa");
-			return null;
+		
+		return createdTaskDto;
+	}
+	
+	//Endpoint -> BUSCAR Tarefa por ID (GET) - CORRIGIDO
+		@GetMapping("/{id}")
+		public TaskResponseDTO findTaskByIdApi(@PathVariable Long id) { 
+			System.out.println("Recebida a requisição GET para o id: " +id );
+			TaskResponseDTO taskDto = taskService.findTaskById(id);
+			System.out.println("Retornando dados DTO da tarefa de ID: " + id);
+			return taskDto;
 		}
-		return createdTask;
-	}
 	
-	//Endpoint -> BUSCAR Tarefa por ID (GET)
-	
-	@GetMapping("/{id}")
-	public Task findTaskByIdApi(@PathVariable Long id) {
-		
-		System.out.println("Recebida a requisição GET para o id: " +id );
-		Task task = taskService.findTaskById(id);
-		
-		System.out.println("Retornando dados da tarefa de ID: " + id);
-		return task;
-	}
-	
-	//Endpoint -> DELETAR Tarefa (DELETE)
-	
-	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteTaskApi(@PathVariable Long id)
-	{
-		System.out.println("Requisição DELETE recebida para api/tasks/" + id);
-		taskService.deleteTask(id);
-		System.out.println("Tarefa ID: " + id + "processada para deleção" );
-	}
+		//Endpoint -> DELETAR Tarefa (DELETE) 
+		@DeleteMapping("/{id}")
+		@ResponseStatus(HttpStatus.NO_CONTENT)
+		public void deleteTaskApi(@PathVariable Long id) 
+		{
+			System.out.println("Requisição DELETE recebida para api/tasks/" + id);
+			taskService.deleteTask(id);
+			System.out.println("Tarefa ID: " + id + " processada para deleção" );
+		}
 	
 	//Endpoint -> Alterar estado da tarefa (PATCH)
 	
-	@PatchMapping("/{id}/complete")
-	public Task markTaskAsCompletedApi(@PathVariable Long id) {
-		System.out.println("Requisição PATCH recebida para concluir a tarefa de ID: " + id);
-		
-		Task updatedTask = taskService.markTaskAsCompleted(id);
-		
-		System.out.println("Retornando tarefa de ID: " + id + " após marcar como concluída");
-		return updatedTask;
-		
-	}
+		@PatchMapping("/{id}/complete")
+		public TaskResponseDTO markTaskAsCompletedApi(@PathVariable Long id) { 
+			System.out.println("Requisição PATCH recebida para concluir a tarefa de ID: " + id);
+			TaskResponseDTO updatedTaskDto = taskService.markTaskAsCompleted(id);
+			System.out.println("Retornando tarefa DTO de ID: " + id + " após marcar como concluída");
+			return updatedTaskDto;
+		}
+
 	
 	//Endpoint -> ATUALIZAR tarefa (PUT)
 	
-	@PutMapping("/{id}")
-	public Task updateTaskApi (@PathVariable Long id, @Valid @RequestBody CreateTaskDTO taskData) {
-		
-		Task updateTask = taskService.updateTask(id, taskData);
-		
-		System.out.println("Retornando tarefa de ID: " +  id + " após atualização.");
-		
-		return updateTask;
-		
-	}
-
-
+		@PutMapping("/{id}")
+		public TaskResponseDTO updateTaskApi (@PathVariable Long id, @Valid @RequestBody CreateTaskDTO taskData) { 
+	        System.out.println("Requisição PUT recebida para atualizar tarefa ID: " + id);
+			TaskResponseDTO updatedTaskDto = taskService.updateTask(id, taskData);
+			System.out.println("Retornando tarefa DTO de ID: " +  id + " após atualização.");
+			return updatedTaskDto;
+		}
 }
