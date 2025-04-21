@@ -3,9 +3,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
 import java.time.LocalDate;
 import java.util.Optional;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.test.util.ReflectionTestUtils;
+
 import dev.caio.tasks_api.dto.CreateTaskDTO;
 import dev.caio.tasks_api.dto.TaskResponseDTO;
 import dev.caio.tasks_api.enums.Prioridade;
@@ -182,4 +187,36 @@ void findTaskById_QuandoIdNaoExiste_DeveLancarResourceNotFoundException() {
  	        }, "Deveria lançar InvalidTaskStateException ao deletar uma tarefa concluída");	
     }
     
+    //(6) - Teste: Deletar tarefa existente e não concluída (caminho de sucesso)
+    
+    @Test
+    @DisplayName("Deve chamar deleteById no repositório quando tarefa existe e não foi concluída")
+    
+    void deleteTask_QuandoIdExisteETarefaNaoConcluida_DeveChamarDeleteById() {
+    	
+        System.out.println(" INCIANDO -> Teste (6): Deletar tarefa válida (não concluída).");
+
+    	//6.1 Arrange
+        Long taskId = 2L;
+        Task taskNaoConcluida = new Task ();
+        ReflectionTestUtils.setField(taskNaoConcluida, "id", taskId);
+        taskNaoConcluida.setTitulo("Tarefa válida para deletar");
+        taskNaoConcluida.setConcluida(false);
+        
+        //6.2 Config do mock do repositório p encontrar tarefa
+        
+        System.out.println("Configurando mock repository.findById para retornar tarefa NÃO Concluída.");
+ when(taskRepository.findById(taskId)).thenReturn(Optional.of(taskNaoConcluida));
+ 
+ //6.3 ACT
+  System.out.println("Chamando taskService.deleteTask");
+  taskService.deleteTask(taskId);
+  
+//6.4 ASSERT
+  System.out.println("Verificando chamadas aos mocks.");
+  verify(taskRepository, times(1)).findById(taskId);
+
+  verify(taskRepository, times(1)).deleteById(taskId);
+  
+    } 
 } 
