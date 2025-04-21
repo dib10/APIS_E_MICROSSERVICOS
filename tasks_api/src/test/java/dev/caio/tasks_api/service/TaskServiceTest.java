@@ -215,7 +215,6 @@ void findTaskById_QuandoIdNaoExiste_DeveLancarResourceNotFoundException() {
 //6.4 ASSERT
   System.out.println("Verificando chamadas aos mocks.");
   verify(taskRepository, times(1)).findById(taskId);
-
   verify(taskRepository, times(1)).deleteById(taskId);
   
     } 
