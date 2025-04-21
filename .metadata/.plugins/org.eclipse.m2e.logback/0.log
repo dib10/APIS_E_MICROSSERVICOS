@@ -2297,3 +2297,113 @@ org.eclipse.core.runtime.CoreException: Launch configuration ContactsApiApplicat
 2025-04-21 14:34:49,031 [Worker-25: Launching TaskServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
 2025-04-21 14:55:06,677 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-04-21 14:55:06,702 [Worker-41: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 15:11:09,812 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 15:11:09,852 [Worker-44: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 15:15:42,835 [Worker-42: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 15:15:42,903 [Worker-42: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 15:16:40,421 [Worker-45: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: dev.caio:tasks_api:0.0.1-SNAPSHOT @ C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\pom.xml.
+2025-04-21 15:16:42,953 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 15:16:43,005 [Worker-45: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 15:53:11,707 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-04-21 16:04:34,950 [Worker-5: Updating maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2025-04-21 16:04:37,806 [Worker-5: Updating maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: dev.caio:tasks_api:0.0.1-SNAPSHOT @ C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\pom.xml.
+2025-04-21 16:04:40,736 [Worker-5: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/main/java
+2025-04-21 16:04:40,741 [Worker-5: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:04:40,743 [Worker-5: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:04:40,747 [Worker-5: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/test/java
+2025-04-21 16:04:40,750 [Worker-5: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/test/resources
+2025-04-21 16:04:41,266 [Worker-5: Updating maven projects] INFO  o.e.m.jdt.internal.UnitTestSupport - Reset launch configuration name: TaskServiceTest
+2025-04-21 16:04:41,269 [Worker-5: Updating maven projects] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating TaskServiceTest from maven configuration
+2025-04-21 16:04:43,741 [Worker-5: Updating maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0,00 sec, refresh facades takes 5,00 sec, update config takes 2,00 sec 
+2025-04-21 16:04:48,733 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:04:48,763 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:05:03,489 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:05:03,508 [Worker-2: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:05:40,903 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:05:40,914 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:06:41,451 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-04-21 16:07:57,015 [Worker-18: Updating maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2025-04-21 16:08:00,987 [Worker-18: Updating maven projects] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: dev.caio:tasks_api:0.0.1-SNAPSHOT @ C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\pom.xml.
+2025-04-21 16:08:05,377 [Worker-18: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/main/java
+2025-04-21 16:08:05,383 [Worker-18: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:08:05,385 [Worker-18: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:08:05,385 [Worker-18: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/test/java
+2025-04-21 16:08:05,389 [Worker-18: Updating maven projects] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/test/resources
+2025-04-21 16:08:06,990 [Worker-18: Updating maven projects] INFO  o.e.m.jdt.internal.UnitTestSupport - Reset launch configuration name: TaskServiceTest
+2025-04-21 16:08:06,998 [Worker-18: Updating maven projects] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating TaskServiceTest from maven configuration
+2025-04-21 16:08:13,370 [Worker-18: Updating maven projects] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0,00 sec, refresh facades takes 7,00 sec, update config takes 8,00 sec 
+2025-04-21 16:08:16,223 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:08:16,269 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:19:19,116 [Worker-4: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2025-04-21 16:19:20,495 [Worker-4: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: dev.caio:tasks_api:0.0.1-SNAPSHOT @ C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\pom.xml.
+2025-04-21 16:19:22,544 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/main/java
+2025-04-21 16:19:22,546 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:19:22,547 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:19:22,547 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/test/java
+2025-04-21 16:19:22,549 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/test/resources
+2025-04-21 16:19:22,842 [Worker-4: Updating Maven Project] INFO  o.e.m.jdt.internal.UnitTestSupport - Reset launch configuration name: TaskServiceTest
+2025-04-21 16:19:22,842 [Worker-4: Updating Maven Project] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating TaskServiceTest from maven configuration
+2025-04-21 16:19:23,197 [Worker-4: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0,00 sec, refresh facades takes 3,00 sec, update config takes 0,00 sec 
+2025-04-21 16:19:25,107 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:19:25,135 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:20:00,768 [Worker-0: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2025-04-21 16:20:01,479 [Worker-0: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: dev.caio:tasks_api:0.0.1-SNAPSHOT @ C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\pom.xml.
+2025-04-21 16:20:03,314 [Worker-0: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/main/java
+2025-04-21 16:20:03,315 [Worker-0: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:20:03,316 [Worker-0: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/main/resources
+2025-04-21 16:20:03,317 [Worker-0: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /tasks_api/src/test/java
+2025-04-21 16:20:03,318 [Worker-0: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /tasks_api/src/test/resources
+2025-04-21 16:20:03,655 [Worker-0: Updating Maven Project] INFO  o.e.m.jdt.internal.UnitTestSupport - Reset launch configuration name: TaskServiceTest
+2025-04-21 16:20:03,656 [Worker-0: Updating Maven Project] INFO  o.e.m.jdt.internal.UnitTestSupport - Updating TaskServiceTest from maven configuration
+2025-04-21 16:20:04,089 [Worker-0: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0,00 sec, refresh facades takes 2,00 sec, update config takes 0,00 sec 
+2025-04-21 16:20:05,717 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:20:05,757 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:21:23,065 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:21:23,078 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:32:23,355 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2025-04-21 16:33:19,927 [Worker-1: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:33:19,966 [Worker-1: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:37:01,001 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:37:01,547 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:37:30,341 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:37:30,348 [Worker-13: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:38:50,521 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:38:50,556 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 16:38:50,564 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:42:54,629 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:42:54,663 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 16:42:54,730 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 16:46:31,040 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 16:46:31,051 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 16:46:31,078 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:04:48,043 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:04:48,053 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:04:48,081 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:17:31,677 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:17:31,679 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:17:31,713 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:33:19,046 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:33:19,065 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:33:19,362 [Worker-15: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:35:22,120 [Worker-23: Launching TaskServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:35:22,140 [Worker-23: Launching TaskServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:35:22,264 [Worker-23: Launching TaskServiceTest] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:38:07,116 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:38:07,118 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:38:07,134 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:39:52,354 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:39:52,356 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:39:52,363 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:51:52,943 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:51:52,951 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:51:52,970 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:58:33,905 [Worker-26: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: dev.caio:tasks_api:0.0.1-SNAPSHOT @ C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\pom.xml.
+2025-04-21 17:58:36,631 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:58:36,632 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:58:36,645 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 17:58:38,888 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-04-21 17:58:38,967 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 17:58:38,980 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
+2025-04-21 18:04:11,619 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 18:04:11,623 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-04-21 18:04:11,636 [Worker-26: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\caio_\Documents\GitHub\APIS_E_MICROSSERVICOS\tasks_api\src\test\resources
