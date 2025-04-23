@@ -3,17 +3,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import org.springframework.http.MediaType; 
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
 import com.jayway.jsonpath.JsonPath;
+
 import dev.caio.tasks_api.enums.Prioridade;
 
 @SpringBootTest
@@ -78,6 +84,38 @@ public class TaskControllerTest {
                 .andExpect(jsonPath("$.id").exists())      				.andExpect(jsonPath("$.titulo").value("Derrubar Titã Colossal"))             				.andExpect(jsonPath("$.prioridade").value("ALTA"))            				.andExpect(jsonPath("$.dataLimite").value("2025-12-25"))              				.andExpect(jsonPath("$.categoria").value("Tropa de Exploração"))              				.andExpect(jsonPath("$.concluida").value(false));	
 	}
 	
+	// (2) Teste para Tentar criar uma tarefa com dataLimite inválida.
+	
+	@Test
+	@DisplayName("2. Deve Retornar erro 400 ao criar uma tarefa com data inválida")
+	
+	void shouldReturnBadRequestWhenDueDateIsInPaste() throws Exception {
+		String dataLimiteInvalida = LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE);
+		
+		String json = """
+	            {
+	             "titulo": "Investigar a Annie Leonhart",
+	              "descricao": "Verificar se ela tem envolvimento com os titãs",
+	              "prioridade": "MEDIA",
+	              "dataLimite": "%s",
+	              "categoria": "Investigação"
+	            }
+	        """.formatted(dataLimiteInvalida);
+		
+		//ACT E ASSERT
+		
+		 mockMvc.perform(post("/api/tasks")
+	                .contentType(MediaType.APPLICATION_JSON)
+	                .content(json)) 
+	                .andDo(print())
+	                .andExpect(status().isBadRequest()); 
+	                
+		}
+	
+	}
 	
 	
-}
+	
+	
+	
+
