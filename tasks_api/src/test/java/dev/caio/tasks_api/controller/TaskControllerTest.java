@@ -1,5 +1,7 @@
 package dev.caio.tasks_api.controller;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -152,6 +154,26 @@ public class TaskControllerTest {
 		mockMvc.perform(get("/api/tasks/{id}",idInexistente))
 		.andDo(print())
 		.andExpect(status().isNotFound()); 
+	}
+	
+
+	// (5) Teste para Tentar excluir tarefa concluída 
+	@Test
+	@DisplayName("5. Deve retornar erro 409 ao tentar excluir tarefa concluída")
+	void shouldReturnConflictWhenDeletingCompletedTask() throws Exception {
+		String titulo = "Task Concluída (cortar nuca do titã anômalo)";
+		String categoria = "JáConcluídas";
+		String dataLimite = "2025-06-01";
+		Prioridade prioridade = Prioridade.BAIXA;
+		Long taskId = createTaskandGetId(titulo, categoria, dataLimite, prioridade);
+
+		// marcando como concluída
+		mockMvc.perform(patch("/api/tasks/{id}/complete", taskId))
+				.andExpect(status().isOk()); 
+		mockMvc.perform(delete("/api/tasks/{id}", taskId)) 
+		
+		.andDo(print())
+		.andExpect(status().isConflict()); 
 	}
 
 	
