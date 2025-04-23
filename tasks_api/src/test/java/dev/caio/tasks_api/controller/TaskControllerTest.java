@@ -189,8 +189,6 @@ public class TaskControllerTest {
 			
 			Long idTaskM = createTaskandGetId("Task Pag M", "PagIsolado", "2025-07-12", Prioridade.MEDIA);
 			
-		
-
 			// act e assert
 			mockMvc.perform(get("/api/tasks")
 							.param("page", "0") 
@@ -209,12 +207,39 @@ public class TaskControllerTest {
 					.andExpect(jsonPath("$.content[1].id").value(idTaskM)) 
 					.andExpect(jsonPath("$.content[1].titulo").value("Task Pag M"));
 
-	
-	
-	
-
 		}
 		
+		// (6) Teste para Buscar tarefas por categoria.
+	
+		@Test
+		@DisplayName("7. Deve retornar apenas tarefas da categoria buscada")
+		
+		void shouldReturnPaginatedTasksByCategory() throws Exception {
+			
+			String categoriaAlvo = "BuscaIsolada";
+			String outraCategoria = "OutraCategoria";
+			
+			Long idBusca1 = createTaskandGetId("Busca Task 1", categoriaAlvo, "2025-12-11", Prioridade.MEDIA);
+			
+			Long idBusca2 = createTaskandGetId("Busca Task 2", categoriaAlvo, "2025-06-17", Prioridade.MEDIA); // aniversário da sarinha te amo :)
+			
+			mockMvc.perform(get("/api/tasks/search")
+					.param("categoria", categoriaAlvo) 
+					.param("page", "0")
+					.param("size", "5")) 
+			.andDo(print())
+			.andExpect(status().isOk())
+			.andExpect(jsonPath("$.content").isArray())
+			.andExpect(jsonPath("$.content", hasSize(2))) 
+			.andExpect(jsonPath("$.totalElements").value(2)) 
+			.andExpect(jsonPath("$.totalPages").value(1)) 
+			.andExpect(jsonPath("$.number").value(0))
+			
+			.andExpect(jsonPath("$.content[?(@.id == %d)]", idBusca1).exists()) 
+			.andExpect(jsonPath("$.content[?(@.id == %d)]", idBusca2).exists()) 
+			.andExpect(jsonPath("$.content[0].categoria").value(categoriaAlvo)) 
+			.andExpect(jsonPath("$.content[1].categoria").value(categoriaAlvo));
+		}
 		
 }
 	
