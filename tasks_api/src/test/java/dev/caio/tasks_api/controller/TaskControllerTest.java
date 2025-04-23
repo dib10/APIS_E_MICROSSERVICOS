@@ -22,6 +22,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import com.jayway.jsonpath.JsonPath;
+import static org.hamcrest.Matchers.hasSize;
+
 
 import dev.caio.tasks_api.enums.Prioridade;
 
@@ -175,12 +177,46 @@ public class TaskControllerTest {
 		.andDo(print())
 		.andExpect(status().isConflict()); 
 	}
+	
+	
+	// (6) Teste para Listar tarefas com paginação.
+		@Test
+		@DisplayName("6. Deve retornar tarefas paginadas e ordenadas")
+		void shouldReturnPaginatedTasks() throws Exception {
+			createTaskandGetId("Task Pag Z ", "PagIsolado", " 2025-07-10", Prioridade.ALTA);
+			
+			Long idTaskA = createTaskandGetId("Task Pag A", "PagIsolado", "2025-07-11", Prioridade.BAIXA);
+			
+			Long idTaskM = createTaskandGetId("Task Pag M", "PagIsolado", "2025-07-12", Prioridade.MEDIA);
+			
+		
+
+			// act e assert
+			mockMvc.perform(get("/api/tasks")
+							.param("page", "0") 
+							.param("size", "2")  
+							.param("sort", "titulo,asc")) 
+					.andDo(print())
+					.andExpect(status().isOk())
+					.andExpect(jsonPath("$.content").isArray())
+					.andExpect(jsonPath("$.content", hasSize(2))) 
+					.andExpect(jsonPath("$.totalElements").value(3)) 
+					.andExpect(jsonPath("$.totalPages").value(2)) 
+					.andExpect(jsonPath("$.size").value(2)) 
+					.andExpect(jsonPath("$.number").value(0)) 
+					.andExpect(jsonPath("$.content[0].id").value(idTaskA)) 
+					.andExpect(jsonPath("$.content[0].titulo").value("Task Pag A"))
+					.andExpect(jsonPath("$.content[1].id").value(idTaskM)) 
+					.andExpect(jsonPath("$.content[1].titulo").value("Task Pag M"));
 
 	
 	
 	
 
-	}
+		}
+		
+		
+}
 	
 	
 	
