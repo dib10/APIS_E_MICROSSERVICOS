@@ -1,4 +1,5 @@
 package dev.caio.tasks_api.controller;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -112,6 +113,51 @@ public class TaskControllerTest {
 	                
 		}
 	
+	// (3) Teste para 	Buscar tarefa existente por ID (caminho feliz).
+
+	@Test
+	@DisplayName("3. Deve retornar a tarefa correta quando o ID é válido")
+	
+	void shouldReturnTaskWhenIdIsValid() throws Exception {
+		String titulo = "Investigar carne de titã";
+		String categoria = "Investigação";
+		String dataLimite = "2025-05-02";
+		Prioridade prioridade = Prioridade.MEDIA;
+		Long taskId = createTaskandGetId(titulo, categoria, dataLimite, prioridade);
+		String descricaoEsperada = "Descricao para " + titulo;	
+		
+		//act e assert 
+		
+		 mockMvc.perform(get("/api/tasks/{id}", taskId))
+		 .andDo(print())
+	     .andExpect(status().isOk())
+	     .andExpect(jsonPath("$.id").value(taskId))      		.andExpect(jsonPath("$.titulo").value(titulo))             		.andExpect(jsonPath("$.prioridade").value(prioridade.name()))  .andExpect(jsonPath("$.descricao").value(descricaoEsperada))
+
+		.andExpect(jsonPath("$.dataLimite").value(dataLimite))
+ 
+		.andExpect(jsonPath("$.categoria").value(categoria))
+		.andExpect(jsonPath("$.concluida").value(false));	
+		
+
+	}
+	
+	// (4) Teste para 	Buscar tarefa por ID inválido (caminho triste).]
+	@Test
+	@DisplayName("4. Deve retornar erro 404 ao buscar tarefa com ID inválido")
+	
+	void shouldReturnNotFoundWhenTaskDoesNotExist() throws Exception {
+		Long idInexistente = 9999L;
+		
+		//act e assert
+		mockMvc.perform(get("/api/tasks/{id}",idInexistente))
+		.andDo(print())
+		.andExpect(status().isNotFound()); 
+	}
+
+	
+	
+	
+
 	}
 	
 	
