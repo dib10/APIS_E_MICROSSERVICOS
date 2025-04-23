@@ -217,7 +217,7 @@ public class TaskControllerTest {
 		void shouldReturnPaginatedTasksByCategory() throws Exception {
 			
 			String categoriaAlvo = "BuscaIsolada";
-			String outraCategoria = "OutraCategoria";
+			String outraCategoria = "OutraCategoria"; // p verificar se o filtro ta pegando 
 			
 			Long idBusca1 = createTaskandGetId("Busca Task 1", categoriaAlvo, "2025-12-11", Prioridade.MEDIA);
 			
