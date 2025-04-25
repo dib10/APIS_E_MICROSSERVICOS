@@ -1,12 +1,12 @@
 # 📚 APIs e Microsserviços 
 
-Bem-vindo ao repositório da disciplina **APIs e Microsserviços**! 🚀 Aqui vou compartilhar anotações, projetos e desafios ao longo do curso. A matéria foca na construção de sistemas distribuídos utilizando **APIs** e **arquiteturas de microsserviços**.
+Bem-vindo ao repositório da disciplina **APIs e Microsserviços**. Aqui vou compartilhar anotações, projetos e desafios ao longo do curso. A matéria foca na construção de sistemas distribuídos utilizando **APIs** e **arquiteturas de microsserviços**.
 
 ## 📌 Objetivo do Curso
 
 Aprender a projetar, desenvolver e implantar aplicações **modernas, escaláveis, seguras e eficientes** utilizando **Java + Spring Boot**.
 
-## 🛠️ O que vamos aprender nessa disciplina?
+## 🛠️ O que vou aprender nessa disciplina?
 
 - **APIs RESTful**: boas práticas e uso correto de verbos HTTP
 - **Autenticação e autorização**: segurança em APIs
