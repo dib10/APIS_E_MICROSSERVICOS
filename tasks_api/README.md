@@ -1,4 +1,4 @@
-# 📝 API de Gerenciamento de Tarefas
+# 📝 API de Gerenciamento de Tarefas (Em desenvolvimento)
 
 API RESTful para gerenciar tarefas pessoais (to-do list), permitindo operações CRUD, com foco em boas práticas de desenvolvimento, validações, tratamento de exceções e testes automatizados.
 
