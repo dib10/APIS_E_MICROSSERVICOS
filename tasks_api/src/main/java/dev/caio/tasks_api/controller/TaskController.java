@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.caio.tasks_api.dto.CreateTaskDTO;
 import dev.caio.tasks_api.dto.TaskResponseDTO;
+import dev.caio.tasks_api.model.UserAuthenticated;
 import dev.caio.tasks_api.service.TaskService;
 import jakarta.validation.Valid;
 
@@ -31,15 +33,18 @@ public class TaskController {
 	//Endpoint -> CRIAR Tarefa (POST)
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public TaskResponseDTO createTaskApi(@Valid @RequestBody CreateTaskDTO createTaskDTO) {
-		System.out.println("Requisição POST recebida");
+	public TaskResponseDTO createTaskApi(@Valid @RequestBody CreateTaskDTO createTaskDTO, @AuthenticationPrincipal UserAuthenticated authenticatedUser) {
+        System.out.println("Requisição POST recebida para criar tarefa pelo usuário: " + (authenticatedUser != null ? authenticatedUser.getUsername() : "ANÔNIMO (ERRO)"));
+        
+        if(authenticatedUser == null) {
+            System.err.println("ERRO: Usuário autenticado é nulo ao tentar criar tarefa.");
 
-TaskResponseDTO createdTaskDto = taskService.createTask(createTaskDTO);
+        }
+        
+        TaskResponseDTO createdTaskDto = taskService.createTask(createTaskDTO, authenticatedUser.getUser());
 		
-        System.out.println("Retornando DTO da tarefa criada ID: " + createdTaskDto.getId());
-		
-		
-		return createdTaskDto;
+        System.out.println("Retornando DTO da tarefa criada ID: " + createdTaskDto.getId() + " para o usuário: " + authenticatedUser.getUsername());
+        return createdTaskDto;
 	}
 	
 	//Endpoint -> BUSCAR Tarefa por ID (GET) - CORRIGIDO

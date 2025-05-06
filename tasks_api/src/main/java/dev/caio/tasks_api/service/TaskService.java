@@ -12,6 +12,7 @@ import dev.caio.tasks_api.dto.TaskResponseDTO;
 import dev.caio.tasks_api.exception.InvalidTaskStateException;
 import dev.caio.tasks_api.exception.ResourceNotFoundException;
 import dev.caio.tasks_api.model.Task;
+import dev.caio.tasks_api.model.User;
 import dev.caio.tasks_api.repository.TaskRepository;
 
 
@@ -38,16 +39,23 @@ public class TaskService {
 		return modelMapper.map(task, TaskResponseDTO.class);
 	}
 
-	public TaskResponseDTO createTask(CreateTaskDTO createTaskDTO) {
+	public TaskResponseDTO createTask(CreateTaskDTO createTaskDTO, User currentUser) {
+    System.out.println("SERVICE: Criando tarefa para o usuário ID: " + currentUser.getId());
+
+	{
 		if (createTaskDTO.getDataLimite() != null && createTaskDTO.getDataLimite().isBefore(LocalDate.now())) {
 			System.err.println("ERRO!! A data limite não pode ser anterior à data atual"); 
 throw new IllegalArgumentException("Data limite não pode ser anterior à data atual.");
 		}
 		Task newTask = modelMapper.map(createTaskDTO, Task.class);
-		System.out.println("Salvando a tarefa " + newTask.getTitulo());
-Task savedTask = taskRepository.save(newTask);
-System.out.println("Tarefa salva com ID: " + savedTask.getId());
-return convertToDto(savedTask); 
+		
+        newTask.setUser(currentUser);
+
+        System.out.println("Salvando a tarefa '" + newTask.getTitulo() + "' para o usuário " + currentUser.getUsername());
+        Task savedTask = taskRepository.save(newTask);
+        System.out.println("Tarefa salva com ID: " + savedTask.getId() + " associada ao usuário ID: " + savedTask.getUser().getId());
+        return convertToDto(savedTask);
+        }
 	}
 
 	//*******Buscar tarefa por ID - 

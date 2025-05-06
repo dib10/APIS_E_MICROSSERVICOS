@@ -33,6 +33,7 @@ CREATE TABLE task (
 	data_limite DATE NOT NULL,
 	concluida BOOLEAN NOT NULL DEFAULT FALSE,
 	categoria VARCHAR(50) NOT NULL,
+	criada_em TIMESTAMP NOT NULL, 
 	user_id BIGINT NOT NULL,
 	FOREIGN KEY (user_id) REFERENCES users(id)
 	

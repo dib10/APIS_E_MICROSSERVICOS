@@ -38,6 +38,8 @@ public class Task {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	
+	private User user; 
+	
 	//Define a data e hora de criação antes do primeiro INSERT
 	@PrePersist
 	protected void onCreate() {
@@ -124,6 +126,16 @@ public class Task {
 	public LocalDateTime getCriadaEm() {
 		return criadaEm;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 
 	//vou remover o set pq já tenho método onCreate
 	//public void setCriadaEm(LocalDateTime criadaEm) {
