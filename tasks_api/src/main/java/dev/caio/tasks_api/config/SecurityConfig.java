@@ -2,6 +2,7 @@ package dev.caio.tasks_api.config;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +23,8 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 
+import dev.caio.tasks_api.security.CustomJwtAuthenticationConverter;
+
 @Configuration 
 @EnableWebSecurity 
 public class SecurityConfig {
@@ -31,6 +34,15 @@ public class SecurityConfig {
 	
     @Value("${jwt.private.key}")
     private RSAPrivateKey privateKey;
+    
+    private final CustomJwtAuthenticationConverter customJwtAuthenticationConverter;
+    
+    @Autowired
+    public SecurityConfig(CustomJwtAuthenticationConverter customJwtAuthenticationConverter) {
+        this.customJwtAuthenticationConverter = customJwtAuthenticationConverter;
+
+    }
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -69,11 +81,10 @@ public class SecurityConfig {
                 .anyRequest().authenticated()                       
             )
             .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(jwt -> {
-                    
-                })
-            )
-            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); 
-        return http.build();
-    }
+                    .jwt(jwt -> jwt.jwtAuthenticationConverter(this.customJwtAuthenticationConverter))
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+            return http.build();
+        }
 }
