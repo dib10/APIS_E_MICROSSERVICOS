@@ -88,28 +88,26 @@ public class TaskController {
 		}
 		//Endpoint -> LISTAR  tarefas com paginação (GET)
 		
-		@GetMapping
-		public Page<TaskResponseDTO> findAllPaginatedApi(Pageable pageable) {
-			
-		    System.out.println("Requisição GET  recebida para /api/tasks com Pageable: " + pageable);
-		    Page<TaskResponseDTO> resultPage = taskService.findAllPaginated(pageable);
-		    System.out.println("Retornando Page de TaskResponseDTO.");
-		    return resultPage;
-
-		}
+		 @GetMapping
+		    public Page<TaskResponseDTO> findAllPaginatedApi(Pageable pageable,
+		                                                     @AuthenticationPrincipal UserAuthenticated authenticatedUser) { // 1. Adicionado @AuthenticationPrincipal
+		        System.out.println("Requisição GET recebida para /api/tasks do usuário: " + authenticatedUser.getUsername() + " com Pageable: " + pageable);
+		        // 2. Passa o User para o serviço
+		        Page<TaskResponseDTO> resultPage = taskService.findAllPaginated(authenticatedUser.getUser(), pageable);
+		        System.out.println("Retornando Page de TaskResponseDTO para o usuário: " + authenticatedUser.getUsername());
+		        return resultPage;
+		    }
 		
 		// Endpoint para BUSCAR Tarefas por Categoria  
 		
-		@GetMapping("/search")
-		public Page<TaskResponseDTO> searchCategoriaApi(@RequestParam String categoria, Pageable pageable){
-	    System.out.println("Requisição GET recebida para busca por categoria");
-	    
-	    Page<TaskResponseDTO> resultPage = taskService.findByCategoriaPaginated(categoria, pageable );
-	    
-	    System.out.println(" Retornando página de tarefas encontradas para a categoria solicitada ");
-	    
-	    return resultPage;
-    
-		}
+		 @GetMapping("/search")
+		    public Page<TaskResponseDTO> searchCategoriaApi(@RequestParam String categoria, Pageable pageable,
+		                                                    @AuthenticationPrincipal UserAuthenticated authenticatedUser) { // Adicionado @AuthenticationPrincipal
+		        System.out.println("Requisição GET recebida para busca por categoria '" + categoria + "' do usuário: " + authenticatedUser.getUsername());
+		        // Passa o User para o serviço
+		        Page<TaskResponseDTO> resultPage = taskService.findByCategoriaPaginated(authenticatedUser.getUser(), categoria, pageable);
+		        System.out.println("Retornando página de tarefas encontradas para o usuário: " + authenticatedUser.getUsername() + " na categoria: " + categoria);
+		        return resultPage;
+		    }
 
 }
