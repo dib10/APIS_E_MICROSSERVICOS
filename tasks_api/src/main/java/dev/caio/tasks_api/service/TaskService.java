@@ -39,24 +39,24 @@ public class TaskService {
 		return modelMapper.map(task, TaskResponseDTO.class);
 	}
 
+   
 	public TaskResponseDTO createTask(CreateTaskDTO createTaskDTO, User currentUser) {
-    System.out.println("SERVICE: Criando tarefa para o usuário ID: " + currentUser.getId());
+        System.out.println("SERVICE: Criando tarefa para o usuário ID: " + currentUser.getId());
 
-	{
-		if (createTaskDTO.getDataLimite() != null && createTaskDTO.getDataLimite().isBefore(LocalDate.now())) {
-			System.err.println("ERRO!! A data limite não pode ser anterior à data atual"); 
-throw new IllegalArgumentException("Data limite não pode ser anterior à data atual.");
-		}
-		Task newTask = modelMapper.map(createTaskDTO, Task.class);
-		
+        if (createTaskDTO.getDataLimite() != null && createTaskDTO.getDataLimite().isBefore(LocalDate.now())) {
+            System.err.println("ERRO!! A data limite não pode ser anterior à data atual"); 
+            throw new IllegalArgumentException("Data limite não pode ser anterior à data atual.");
+        }
+        Task newTask = modelMapper.map(createTaskDTO, Task.class);
+        
         newTask.setUser(currentUser);
 
         System.out.println("Salvando a tarefa '" + newTask.getTitulo() + "' para o usuário " + currentUser.getUsername());
         Task savedTask = taskRepository.save(newTask);
         System.out.println("Tarefa salva com ID: " + savedTask.getId() + " associada ao usuário ID: " + savedTask.getUser().getId());
         return convertToDto(savedTask);
-        }
 	}
+    // --- FIM DA CORREÇÃO NO createTask ---
 
 	//*******Buscar tarefa por ID - 
 	public TaskResponseDTO findTaskById(Long id) {
@@ -91,7 +91,7 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 		System.out.println("Alterando o estado da tarefa de ID: " + id + " para concluída.");
 		Task updatedTask = taskRepository.save(task);
 		System.out.println("Tarefa ID: " + id + " atualizada e salva no banco."); 
-		return convertToDto(updatedTask); // 
+		return convertToDto(updatedTask); 
 	}
 
 	// **** Atualizar COMPLETAMENTE uma tarefa existente (PUT)
@@ -118,31 +118,28 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	}
 	
 	// ****** Paginação - buscar todas as tarefas de forma paginada (GET)
-	
-	public Page<TaskResponseDTO> findAllPaginated(Pageable pageable) {
-		System.out.println("Buscando tarefas com paginação: " + pageable);
-		
-		Page<Task> taskPage = taskRepository.findAll(pageable);
+	// Este método já foi corrigido para buscar tarefas do usuário
+	public Page<TaskResponseDTO> findAllPaginated( User currentUser, Pageable pageable) {
+        System.out.println("SERVICE: Buscando tarefas paginadas para o usuário ID: " + currentUser.getId() + " com Pageable: " + pageable);
+
+        Page<Task> taskPage = taskRepository.findByUser(currentUser, pageable); 
 		Page<TaskResponseDTO>taskDtoPage = taskPage.map(this::convertToDto);
-		 System.out.println("Retornando página ");
+		 System.out.println("SERVICE: Retornando página de tarefas do usuário."); 
 		    return taskDtoPage;
 
 	}
 	
 	// ****** Paginação - buscar as tarefas de forma paginada por categorias (GET)
-	
-	public Page<TaskResponseDTO> findByCategoriaPaginated(String categoria, Pageable pageable) {
+	// Este método já foi corrigido para buscar tarefas do usuário por categoria
+	public Page<TaskResponseDTO> findByCategoriaPaginated(User currentUser, String categoria, Pageable pageable) { 
 		
-	    System.out.println("Buscando tarefas paginadas pela categoria");
-	    //1. Chama método criado no TaskRepository
-	    Page<Task> taskPage = taskRepository.findByCategoriaIgnoreCase(categoria, pageable);
-	    //2. Mapeia e Converte a Page<Task> pra Page<TaskResponseDTO>
+	    System.out.println("SERVICE: Buscando tarefas do usuário ID: " + currentUser.getId() + " pela categoria: " + categoria + " com Pageable: " + pageable);
+	    
+	    Page<Task> taskPage = taskRepository.findByUserAndCategoriaIgnoreCase(currentUser, categoria, pageable); 
 	    Page<TaskResponseDTO> taskDtoPage = taskPage.map(this::convertToDto);
 	    
-	    System.out.println("Retornando página para categoria buscada");
+	    System.out.println("SERVICE: Retornando página de tarefas do usuário para a categoria '" + categoria + "'."); 
 	    
 	    return taskDtoPage;
-	
 	}
-
-} 
+}
