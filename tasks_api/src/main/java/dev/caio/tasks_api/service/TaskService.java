@@ -75,16 +75,26 @@ public class TaskService {
     }
 
 	// ******* DELETAR tarefa 
-	public void deleteTask(Long id) {
-		System.out.println("Solicitação recebida para deletar a tarefa de ID: " + id);
-		Task task = findTaskByIdInternal(id); //método interno
+	public void deleteTask(Long id, User currentUser) {
+        System.out.println("SERVICE: Solicitação recebida para deletar a tarefa de ID: " + id + " pelo usuário ID: " + currentUser.getId());
+		Task task = findTaskByIdInternal(id);
+		
+		// verificando se a tarefa pertence ao usuário
+		if (!task.getUser().getId().equals(currentUser.getId())) {
+            System.out.println("SERVICE: Usuário ID: " + currentUser.getId() + " tentou DELETAR tarefa ID: " + id + " que não lhe pertence.");
+            throw new ResourceNotFoundException("Tarefa não encontrada com ID: " + id);
+        }
+        System.out.println("SERVICE: Tarefa ID: " + id + " pertence ao usuário ID: " + currentUser.getId() + ". Prosseguindo com a verificação para deleção.");
+		
+		
+		//método interno
 		if (Boolean.TRUE.equals(task.isConcluida())) {
 System.out.println("ERRO - Tentativa de excluir tarefa concluída - ID: " + id + ")");
 
 throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já foi concluída.");
 		}
 		taskRepository.deleteById(id);
-	System.out.println("Tarefa de ID: " + id + " deletada com sucesso!");
+        System.out.println("Tarefa de ID: " + id + " deletada com sucesso pelo usuário ID: " + currentUser.getId());
 	}
 	
 	// ****** PATCH tarefa concluída - 

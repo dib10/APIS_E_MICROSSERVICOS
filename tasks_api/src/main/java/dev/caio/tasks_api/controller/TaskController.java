@@ -61,11 +61,12 @@ public class TaskController {
 		//Endpoint -> DELETAR Tarefa (DELETE) 
 		@DeleteMapping("/{id}")
 		@ResponseStatus(HttpStatus.NO_CONTENT)
-		public void deleteTaskApi(@PathVariable Long id) 
+		public void deleteTaskApi(@PathVariable Long id, @AuthenticationPrincipal UserAuthenticated authenticatedUser) 
 		{
-			System.out.println("Requisição DELETE recebida para api/tasks/" + id);
-			taskService.deleteTask(id);
-			System.out.println("Tarefa ID: " + id + " processada para deleção" );
+	        System.out.println("Requisição DELETE recebida para api/tasks/" + id + " pelo usuário: " + authenticatedUser.getUsername());
+
+			taskService.deleteTask(id, authenticatedUser.getUser());
+	        System.out.println("Tarefa ID: " + id + " processada para deleção pelo usuário: " + authenticatedUser.getUsername());
 		}
 	
 	//Endpoint -> Alterar estado da tarefa (PATCH)
