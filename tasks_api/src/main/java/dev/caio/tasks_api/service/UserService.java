@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import dev.caio.tasks_api.dto.dto.authentication.UserRegistrationDTO;
 import dev.caio.tasks_api.enums.ERole;
@@ -16,6 +17,7 @@ import dev.caio.tasks_api.repository.RoleRepository;
 import dev.caio.tasks_api.repository.UserRepository;
 import jakarta.transaction.Transactional;
 
+@Service
 public class UserService {
 	
 	@Autowired
