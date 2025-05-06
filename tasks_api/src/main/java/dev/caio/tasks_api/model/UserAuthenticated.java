@@ -65,7 +65,5 @@ public class UserAuthenticated implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
 
 }
