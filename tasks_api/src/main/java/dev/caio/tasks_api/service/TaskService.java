@@ -56,15 +56,23 @@ public class TaskService {
         System.out.println("Tarefa salva com ID: " + savedTask.getId() + " associada ao usuário ID: " + savedTask.getUser().getId());
         return convertToDto(savedTask);
 	}
-    // --- FIM DA CORREÇÃO NO createTask ---
 
 	//*******Buscar tarefa por ID - 
-	public TaskResponseDTO findTaskById(Long id) {
-	System.out.println("SERVICE: Buscando tarefa com ID: " + id + " para retornar DTO.");
-	Task task = findTaskByIdInternal(id); //  método interno
-	System.out.println("SERVICE: Tarefa encontrada: ID " + task.getId());
-	return convertToDto(task); 
-	}
+	public TaskResponseDTO findTaskById(Long id, User currentUser) { // 1. Adicionado User currentUser
+        System.out.println("SERVICE: Buscando tarefa com ID: " + id + " para o usuário ID: " + currentUser.getId());
+        Task task = findTaskByIdInternal(id); // Busca a tarefa pelo ID
+
+        //  verificando se a tarefa pertence ao usuário logado
+
+        if (!task.getUser().getId().equals(currentUser.getId())) {
+            // Se a tarefa não pertence ao usuário, lança exceção para não informar que a tarefa existe mas é de outro
+            System.out.println("SERVICE: Usuário ID: " + currentUser.getId() + " tentou acessar tarefa ID: " + id + " que não lhe pertence.");
+            throw new ResourceNotFoundException("Tarefa não encontrada com ID: " + id);
+        }
+
+        System.out.println("SERVICE: Tarefa ID: " + task.getId() + " encontrada e pertence ao usuário ID: " + currentUser.getId());
+        return convertToDto(task);
+    }
 
 	// ******* DELETAR tarefa 
 	public void deleteTask(Long id) {

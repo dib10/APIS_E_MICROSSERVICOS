@@ -47,12 +47,14 @@ public class TaskController {
         return createdTaskDto;
 	}
 	
-	//Endpoint -> BUSCAR Tarefa por ID (GET) - CORRIGIDO
+	//Endpoint -> BUSCAR Tarefa por ID (GET) - 
 		@GetMapping("/{id}")
-		public TaskResponseDTO findTaskByIdApi(@PathVariable Long id) { 
-			System.out.println("Recebida a requisição GET para o id: " +id );
-			TaskResponseDTO taskDto = taskService.findTaskById(id);
-			System.out.println("Retornando dados DTO da tarefa de ID: " + id);
+		public TaskResponseDTO findTaskByIdApi(@PathVariable Long id,
+                @AuthenticationPrincipal UserAuthenticated authenticatedUser) { 
+	        System.out.println("Recebida a requisição GET para a tarefa ID: " + id + " pelo usuário: " + authenticatedUser.getUsername());
+
+	        TaskResponseDTO taskDto = taskService.findTaskById(id, authenticatedUser.getUser());
+	        System.out.println("Retornando dados DTO da tarefa de ID: " + id + " para o usuário: " + authenticatedUser.getUsername());
 			return taskDto;
 		}
 	
