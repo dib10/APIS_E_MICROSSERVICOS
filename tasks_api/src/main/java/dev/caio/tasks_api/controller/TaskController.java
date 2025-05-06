@@ -82,10 +82,11 @@ public class TaskController {
 	//Endpoint -> ATUALIZAR tarefa (PUT)
 	
 		@PutMapping("/{id}")
-		public TaskResponseDTO updateTaskApi (@PathVariable Long id, @Valid @RequestBody CreateTaskDTO taskData) { 
-	        System.out.println("Requisição PUT recebida para atualizar tarefa ID: " + id);
-			TaskResponseDTO updatedTaskDto = taskService.updateTask(id, taskData);
-			System.out.println("Retornando tarefa DTO de ID: " +  id + " após atualização.");
+		public TaskResponseDTO updateTaskApi (@PathVariable Long id, @Valid @RequestBody CreateTaskDTO taskData, @AuthenticationPrincipal UserAuthenticated authenticatedUser) { 
+	        System.out.println("Requisição PUT recebida para atualizar tarefa ID: " + id + " pelo usuário: " + authenticatedUser.getUsername());
+
+			TaskResponseDTO updatedTaskDto = taskService.updateTask(id, taskData, authenticatedUser.getUser());
+	        System.out.println("Retornando tarefa DTO de ID: " + id + " após atualização pelo usuário: " + authenticatedUser.getUsername());
 			return updatedTaskDto;
 		}
 		//Endpoint -> LISTAR  tarefas com paginação (GET)

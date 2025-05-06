@@ -103,9 +103,18 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	}
 
 	// **** Atualizar COMPLETAMENTE uma tarefa existente (PUT)
-	public TaskResponseDTO updateTask(Long id, CreateTaskDTO taskData) { 
-		System.out.println("Solicitação recebida para ATUALIZAR tarefa de ID: " + id);
+	public TaskResponseDTO updateTask(Long id, CreateTaskDTO taskData,  User currentUser) { 
+        System.out.println("SERVICE: Solicitação recebida para ATUALIZAR tarefa de ID: " + id + " pelo usuário ID: " + currentUser.getId());
 		Task existingTask = findTaskByIdInternal(id); //método interno
+		
+		//Verificando se a tarefa pertence ao usuário
+		if (!existingTask.getUser().getId().equals(currentUser.getId())) {
+            System.out.println("SERVICE: Usuário ID: " + currentUser.getId() + " tentou ATUALIZAR tarefa ID: " + id + " que não lhe pertence.");
+            throw new ResourceNotFoundException("Tarefa não encontrada com ID: " + id);
+        }
+		
+        System.out.println("SERVICE: Tarefa ID: " + id + " pertence ao usuário ID: " + currentUser.getId() + ". Prosseguindo com a atualização.");
+
 		if (Boolean.TRUE.equals(existingTask.isConcluida())) {
             System.err.println("ERRO - Tentativa de atualizar tarefa concluída"); 
             throw new InvalidTaskStateException("Não é possível atualizar uma tarefa que está concluída.");
