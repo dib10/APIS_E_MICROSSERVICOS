@@ -98,9 +98,20 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	}
 	
 	// ****** PATCH tarefa concluída - 
-	public TaskResponseDTO markTaskAsCompleted(Long id) { 
-		System.out.println("Solicitação recebida para marcar a tarefa de ID: " + id);
+	public TaskResponseDTO markTaskAsCompleted(Long id, User currentUser) { 
+        System.out.println("SERVICE: Solicitação recebida para marcar a tarefa de ID: " + id + " como concluída pelo usuário ID: " + currentUser.getId());
 		Task task = findTaskByIdInternal(id); //método interno
+		
+		//verifica se a tarefa pertence ao usuário logado
+		
+		if (!task.getUser().getId().equals(currentUser.getId())) {
+            System.out.println("SERVICE: Usuário ID: " + currentUser.getId() + " tentou MARCAR COMO CONCLUÍDA tarefa ID: " + id + " que não lhe pertence.");
+            throw new ResourceNotFoundException("Tarefa não encontrada com ID: " + id);
+        }
+        System.out.println("SERVICE: Tarefa ID: " + id + " pertence ao usuário ID: " + currentUser.getId() + ". Prosseguindo com a marcação como concluída.");
+		
+		
+		
 		if (Boolean.TRUE.equals(task.isConcluida())) {
 			System.err.println("A tarefa de ID: " + id + " já se encontra concluída."); 
 			throw new InvalidTaskStateException("A tarefa (ID: " + id +") já está marcada como concluída.");

@@ -72,10 +72,11 @@ public class TaskController {
 	//Endpoint -> Alterar estado da tarefa (PATCH)
 	
 		@PatchMapping("/{id}/complete")
-		public TaskResponseDTO markTaskAsCompletedApi(@PathVariable Long id) { 
-			System.out.println("Requisição PATCH recebida para concluir a tarefa de ID: " + id);
-			TaskResponseDTO updatedTaskDto = taskService.markTaskAsCompleted(id);
-			System.out.println("Retornando tarefa DTO de ID: " + id + " após marcar como concluída");
+		public TaskResponseDTO markTaskAsCompletedApi(@PathVariable Long id, @AuthenticationPrincipal UserAuthenticated authenticatedUser) { 
+	        System.out.println("Requisição PATCH recebida para concluir a tarefa de ID: " + id + " pelo usuário: " + authenticatedUser.getUsername());
+			TaskResponseDTO updatedTaskDto = taskService.markTaskAsCompleted(id, authenticatedUser.getUser());
+	        System.out.println("Retornando tarefa DTO de ID: " + id + " após marcar como concluída pelo usuário: " + authenticatedUser.getUsername());
+
 			return updatedTaskDto;
 		}
 
