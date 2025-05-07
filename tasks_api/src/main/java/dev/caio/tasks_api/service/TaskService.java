@@ -158,31 +158,26 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	
 	// ****** Paginação - buscar todas as tarefas de forma paginada (GET)
 	// Este método já foi corrigido para buscar tarefas do usuário
-	public Page<TaskResponseDTO> findAllPaginated( User currentUser, Pageable pageable) {
-        System.out.println("SERVICE: Buscando tarefas paginadas para o usuário ID: " + currentUser.getId() + " (Role(s): " + currentUser.getRoles() + ") com Pageable: " + pageable);
-
-        Page<Task> taskPage; 
+	 public Page<TaskResponseDTO> findAllPaginated(User currentUser, Pageable pageable) {
+	        System.out.println("SERVICE: Buscando tarefas paginadas PARA o usuário ID: " + currentUser.getId() + " com Pageable: " + pageable);
+	        Page<Task> taskPage = taskRepository.findByUser(currentUser, pageable); // buscando apenas as tarefas própias do usuário
+	        Page<TaskResponseDTO> taskDtoPage = taskPage.map(this::convertToDto);
+	        System.out.println("SERVICE: Retornando página de tarefas DO usuário ID: " + currentUser.getId());
+	        return taskDtoPage;
+	    }
+	 
+	 // método para admin
+	 
+	 public Page<TaskResponseDTO> findAllTasksAdmin(Pageable pageable) {
+	        System.out.println("SERVICE (ADMIN): Buscando TODAS as tarefas com Pageable: " + pageable);
+	        Page<Task> taskPage = taskRepository.findAll(pageable); // Busca todas
+	        Page<TaskResponseDTO> taskDtoPage = taskPage.map(this::convertToDto);
+	        System.out.println("SERVICE (ADMIN): Retornando página com TODAS as tarefas.");
+	        return taskDtoPage;
+	    }
         
-        //verificando se o usuário tem o papel ed ADMIN
         
-        boolean isAdmin = currentUser.getRoles().stream().anyMatch(role -> role.getName() == ERole.ROLE_ADMIN);
-        
-        if (isAdmin) {
-            // Se for ADM buscar todas as tarefas de todos os usuários
-            taskPage = taskRepository.findAll(pageable);
-            System.out.println("SERVICE: Usuário é ADMIN, buscando todas as tarefas.");
-        } else {
-            // Se não (user) busca apenas as tarefas do usuário atual
-            taskPage = taskRepository.findByUser(currentUser, pageable);
-            System.out.println("SERVICE: Usuário não é ADMIN, buscando apenas suas tarefas.");
-        }
-        
-        
-		Page<TaskResponseDTO>taskDtoPage = taskPage.map(this::convertToDto);
-		 System.out.println("SERVICE: Retornando página de tarefas do usuário."); 
-		    return taskDtoPage;
-
-	}
+	
 	
 	// ****** Paginação - buscar as tarefas de forma paginada por categorias (GET)
 	// Este método já foi corrigido para buscar tarefas do usuário por categoria

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -114,5 +115,15 @@ public class TaskController {
 		        System.out.println("Retornando página de tarefas encontradas para o usuário: " + authenticatedUser.getUsername() + " na categoria: " + categoria);
 		        return resultPage;
 		    }
+		 
+		 
+		 //endpoint para o admin
+		 //só permite se o usuário for admin
+		 @GetMapping("/admin/all")
+		 @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+		 public Page<TaskResponseDTO> findAllTasksAsAdmin(Pageable pageable) {
+			 System.out.println("Requisição GET recebida em /admin/all por um ADMIN");
+			return taskService.findAllTasksAdmin(pageable);
+		 }
 
 }
