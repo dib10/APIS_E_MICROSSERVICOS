@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach; /
+import org.junit.jupiter.api.BeforeEach; // Usado para configurar mock User
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +27,7 @@ import dev.caio.tasks_api.enums.Prioridade;
 import dev.caio.tasks_api.exception.InvalidTaskStateException;
 import dev.caio.tasks_api.exception.ResourceNotFoundException;
 import dev.caio.tasks_api.model.Task;
-import dev.caio.tasks_api.model.User; 
+import dev.caio.tasks_api.model.User; // <<< Importar User
 import dev.caio.tasks_api.repository.TaskRepository;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq; // <<< VERIFIQUE ESTE
@@ -159,12 +159,12 @@ class TaskServiceTest {
         Task taskEncontrada = new Task();
         ReflectionTestUtils.setField(taskEncontrada, "id", idExistente);
         taskEncontrada.setTitulo("Tarefa do Current User");
-        taskEncontrada.setUser(mockCurrentUser); // <<< Tarefa pertence ao mockCurrentUser
+        taskEncontrada.setUser(mockCurrentUser); 
 
         TaskResponseDTO dtoEsperado = new TaskResponseDTO();
         dtoEsperado.setId(idExistente);
         dtoEsperado.setTitulo(taskEncontrada.getTitulo());
-
+        
         // Config Mocks
         when(taskRepository.findById(idExistente)).thenReturn(Optional.of(taskEncontrada));
         when(modelMapper.map(taskEncontrada, TaskResponseDTO.class)).thenReturn(dtoEsperado);
@@ -281,7 +281,7 @@ class TaskServiceTest {
         verify(taskRepository, times(1)).deleteById(taskId); // Verifica se mandou deletar
     }
 
-    // (6.1) - Teste: Tentar deletar tarefa não pertencente ao usuário
+    // (6.1) - TESTE: Tentar deletar tarefa não pertencente ao usuário
     @Test
     @DisplayName("Deve lançar ResourceNotFoundException ao tentar deletar tarefa de outro usuário")
     void deleteTask_QuandoNaoPertenceAoUsuario_DeveLancarExcecao() {
