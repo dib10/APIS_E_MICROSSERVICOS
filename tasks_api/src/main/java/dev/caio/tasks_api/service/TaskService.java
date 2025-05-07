@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import dev.caio.tasks_api.dto.CreateTaskDTO;
 import dev.caio.tasks_api.dto.TaskResponseDTO;
+import dev.caio.tasks_api.enums.ERole;
 import dev.caio.tasks_api.exception.InvalidTaskStateException;
 import dev.caio.tasks_api.exception.ResourceNotFoundException;
 import dev.caio.tasks_api.model.Task;
@@ -158,9 +159,25 @@ throw new InvalidTaskStateException("Não é possível apagar uma tarefa que já
 	// ****** Paginação - buscar todas as tarefas de forma paginada (GET)
 	// Este método já foi corrigido para buscar tarefas do usuário
 	public Page<TaskResponseDTO> findAllPaginated( User currentUser, Pageable pageable) {
-        System.out.println("SERVICE: Buscando tarefas paginadas para o usuário ID: " + currentUser.getId() + " com Pageable: " + pageable);
+        System.out.println("SERVICE: Buscando tarefas paginadas para o usuário ID: " + currentUser.getId() + " (Role(s): " + currentUser.getRoles() + ") com Pageable: " + pageable);
 
-        Page<Task> taskPage = taskRepository.findByUser(currentUser, pageable); 
+        Page<Task> taskPage; 
+        
+        //verificando se o usuário tem o papel ed ADMIN
+        
+        boolean isAdmin = currentUser.getRoles().stream().anyMatch(role -> role.getName() == ERole.ROLE_ADMIN);
+        
+        if (isAdmin) {
+            // Se for ADM buscar todas as tarefas de todos os usuários
+            taskPage = taskRepository.findAll(pageable);
+            System.out.println("SERVICE: Usuário é ADMIN, buscando todas as tarefas.");
+        } else {
+            // Se não (user) busca apenas as tarefas do usuário atual
+            taskPage = taskRepository.findByUser(currentUser, pageable);
+            System.out.println("SERVICE: Usuário não é ADMIN, buscando apenas suas tarefas.");
+        }
+        
+        
 		Page<TaskResponseDTO>taskDtoPage = taskPage.map(this::convertToDto);
 		 System.out.println("SERVICE: Retornando página de tarefas do usuário."); 
 		    return taskDtoPage;

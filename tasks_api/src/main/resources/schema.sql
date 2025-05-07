@@ -42,4 +42,15 @@ CREATE TABLE task (
 INSERT INTO roles(name) VALUES('ROLE_USER');
 INSERT INTO roles(name) VALUES('ROLE_ADMIN');
 
+-- Usuário ADMIN com senha 'admin_password' hasheada PELA SUA APLICAÇÃO
+INSERT INTO users(username, email, password) VALUES('admin_user', 'admin@example.com', '$2a$10$0ccbC/TD002t4Ctwwt9YXeNwZJ.gRdMn5cmf87BkJDnhZm9bnVqFa'); -- <<< HASH ATUALIZADO
+INSERT INTO user_roles(user_id, role_id) VALUES( (SELECT ID FROM USERS WHERE USERNAME = 'admin_user'), (SELECT ID FROM ROLES WHERE NAME = 'ROLE_ADMIN') );
+
+-- Usuário COMUM com senha 'user_password' hasheada PELA SUA APLICAÇÃO
+INSERT INTO users(username, email, password) VALUES('common_user', 'user@example.com', '$2a$10$Uihu1adZCwdDCruLk2TY6ON/xmAH9JCeC8pDuF5piW/JWPXQ546vu'); -- <<< HASH ATUALIZADO
+INSERT INTO user_roles(user_id, role_id) VALUES( (SELECT ID FROM USERS WHERE USERNAME = 'common_user'), (SELECT ID FROM ROLES WHERE NAME = 'ROLE_USER') );
+
+
+
+
 
